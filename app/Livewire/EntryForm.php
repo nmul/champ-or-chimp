@@ -31,7 +31,7 @@ class Entryform extends Component
 {
 
         public $currentPage = 0;
-        public $maxPage = 6;
+        public $maxPage = 4;
     
         public $firstName = '';
         public $lastName = '';

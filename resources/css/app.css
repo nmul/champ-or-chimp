@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Museo', sans-serif;
+}
+
+.low-opacity-bg-image {
+
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    isolation: isolate;
+}
+
+.low-opacity-bg-image::after {
+    content: '';
+    position: absolute;
+    background: grey;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.formRow {
+    width: 80%;
+}
+
+#entry-form-container {
+    background-color: #F1EEDF;
+}
+
+.custom-orange-text {
+    color: #F48142;
+}
+
+.custom-red-text {
+    color: #CB3057;
+}
+
+.custom-alert-box {
+    background-color: #FEC051;
+    color: black;
+    --tw-border-opacity: 1;
+    border-color: #F48142;
+}
+
+.orange-border {
+    border-color: #F48142;
+}
+
+.blue-bg {
+    background-color: #E0F4FD;
+}
+
+.eggshell-bg {
+    background-color: #F1EEDF;
+}
+
+.edit-field-button {
+    background-color: #CB3057;
+}

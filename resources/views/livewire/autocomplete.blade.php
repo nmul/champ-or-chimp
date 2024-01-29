@@ -4,7 +4,7 @@
         <div class="relative">
             <div class="absolute w-full">
                 @foreach($results as $row)
-                    <div class="p-2 bg-white hover:bg-slate-300 text-gray-800 border-b" wire:click="inputSelected('{{ $row->id }}', '{{ $this->eventId }}', '{{ $this->fieldName }}')">
+                    <div class="p-2 bg-white hover:bg-slate-300 text-gray-800 border-b" wire:click="inputSelected('{{ $row->id }}', '{{ $this->eventId }}', '{{ $this->fieldName }}')" style="z-index: 1">
                         {{$row->name }}
                     </div>
                 @endforeach

@@ -516,45 +516,18 @@
     <script>
 
         $(document).ready(function () {
-            $('#enter-for-other').change(function() {
-                $('#other-entry-div').toggle();
-            });
+           
 
-            $('#close-info-box').click(function(){
-                $('#quick-pick-info-container').hide();
-            })
-
-            $('#toggle-info-button').click(function(){
-                $('#quick-pick-info-container').toggle();
-            })
-
-            $('#close-input-info-box').click(function() {
-                $('#how-to-input-info-container').hide();
-            })
-
-            $('#close-more-info-box').click(function() {
-                $('#more-info-box').hide();
-            })
-
-            $('#landing-page-next-button').click(function() {
-                if ($('#quick-pick').is(":checked")){
-                    $wire.submit();
-                } else {
-                    let currPage = @this.get('currentPage');
-                    @this.set('currentPage', currPage + 1);
-                }
-            })
         });
 
-        function goToNextPage(){
-            let currPage = @this.get('currentPage');
-            @this.set('currentPage', currPage + 1);
-        }
-
-        function goToPreviousPage(){
-            let currPage = @this.get('currentPage');
-            @this.set('currentPage', currPage - 1);
-        }
+        $(document).on('click', '#landing-page-next-button', function() {
+            if ($('#quick-pick').is(":checked")){
+                $wire.submit();
+            } else {
+                let currPage = @this.get('currentPage');
+                @this.set('currentPage', currPage + 1);
+            }
+        });
 
         $(document).on('click', '.custom-next-button', function () {
             let currPage = @this.get('currentPage');
@@ -565,6 +538,27 @@
             let currPage = @this.get('currentPage');
             @this.set('currentPage', currPage - 1);
         });
+
+        $(document).on('change', '#enter-for-other', function() {
+            $('#other-entry-div').toggle();
+        });
+
+        $(document).on('click', '#close-info-box', function() {
+            $('#quick-pick-info-container').toggle();
+        });
+
+        $(document).on('click', '#toggle-info-button', function() {
+            $('#quick-pick-info-container').toggle();
+        })
+
+        $(document).on('click', '#close-input-info-box', function() {
+            $('#how-to-input-info-container').toggle();
+        });
+
+        $(document).on('click', '#close-more-info-box', function() {
+            $('#more-info-box').toggle();
+        });
+
     </script>
     @endscript
 </div>

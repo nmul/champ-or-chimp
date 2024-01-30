@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Entryform;
+use App\Livewire\CartPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/entry', Entryform::class);
+Route::get('/entry', Entryform::class)->middleware(['auth'])->name('entry');
+
+Route::get('/cart', CartPage::class);
 
 
 require __DIR__.'/auth.php';

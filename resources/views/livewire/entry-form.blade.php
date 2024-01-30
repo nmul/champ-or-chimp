@@ -1,9 +1,6 @@
 <div>
-
-        
-
-        <div class="container mt-3 rounded-lg shadow mx-auto h-full" id="entry-form-container">
-            <form wire:submit="submit" id="entryForm" name="entryForm" class="">
+        <div class="container mt-3 rounded-lg shadow mx-auto h-full flex justify-center" id="entry-form-container">
+            <form wire:submit="addToCart" id="entryForm" name="entryForm" method="POST" wire:loading.class="opacity-50">
                 @csrf
                 
                 @if($currentPage == 0)
@@ -32,49 +29,31 @@
                         </div>
                     </div>
 
-                    <!-- Quick pick explanation goes here -->
-                    <div class="flex items-start mb-5">
-                        <div class="flex items-center h-5">
+                    <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
+                        <img id="winner-chimp" src="{{ URL('/images/winner-chimp.jpg') }}" >
+                        <h1 class="text-right custom-red-text font-extrabold text-2xl">Feeling Lucky?</h1>
+                        <p>
+                          Select quick pick to have an entry generated for you!
+                        </p>
+                        <div class="flex items-center h-5 mt-2 mb-5 pb-5">
+                            <div id="jackpot-image">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" baseProfile="tiny" overflow="inherit" version="1.2" viewBox="0 0 50 50" id="casino"><path d="M49 10.489c.604-.457 1-1.173 1-1.989a2.5 2.5 0 1 0-5 0 2.49 2.49 0 0 0 1 1.989V26h-9v8h10v-.297A3.994 3.994 0 0 0 49.5 30c0-.691-.191-1.332-.5-1.899V10.489zM6 17c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H10s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1H3v6h1s0-2 2-2zm14 0c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H24s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1h-1v6h1s0-2 2-2zM38 7V5H25.88c-.456-2.002-2.239-3.5-4.38-3.5S17.576 2.998 17.12 5H5v2H0v41h44V7h-6zm-22 4h12v14H16V11zM2 11h12v14H2V11zm36 32H5v-7h33v7zm4-18H30V11h12v14zm-8-8c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H38s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1h-1v6h1s0-2 2-2z"></path></svg>
+                            </div>
                             <input id="quick-pick" wire:model="is_quick_pick" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
-                        </div>
-                        <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
-                        <button id="toggle-info-button" type="button">
-                            <svg class="flex-shrink-0 w-4 h-4 me-2 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                            </svg>
-                        </button>
-                        <span class="sr-only">Info</span>
-                        <!-- Quick pick icon && also add a quick pick number field which displays after quick pick is selected-->
-                    </div>
-                    <div id="quick-pick-info-container" class="p-4 mb-4 custom-alert-box rounded-lg bg-blue-50" role="alert">
-                        <div class="flex items-center">
-                          <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                          </svg>
-                          <span class="sr-only">Info</span>
-                          <h3 class="text-lg font-medium">Quick Pick Information</h3>
-                          <button type="button" id="close-info-box" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#quick-pick-info-container" aria-label="Close">
-                            <span class="sr-only">Close</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                        </button>
-                        </div>
-                        <div class="mt-2 mb-4 text-sm">
-                          A quick pick entry selects all the entries for the competitions for you automatically! A competitor will be chosen for you at random from the list of favourites close to the competition start date.
+                            <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
                         </div>
                     </div>
 
-                    <div id="events-in-competition mt-10">
+                    {{-- <div id="events-in-competition mt-10">
                         <h1 class="text-lg font-medium mb-3 text-center">2024 Champ Or Chimp Events:</h1>
-                        <div class="mb-3 orange-border">
+                        <div class="mb-3 orange-border grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
                             @foreach ($events as $event)
-                                <div wire:key="{{ $event->id }}" class="flex items-center justify-center {{ $loop->even ? 'eggshell-bg' : 'blue-bg' }} w-full p-2"> 
+                                <div wire:key="{{ $event->id }}" class="{{ $loop->even ? 'eggshell-bg' : 'blue-bg' }} w-full p-2"> 
                                     <p class="mx-auto">{{ $event->name }}</p>
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="flex flex-col items-center pb-10">
                     <!-- Buttons -->
@@ -91,118 +70,108 @@
                 @endif
 
                 @if($currentPage == 1)
-                <div id="irish-competition" class="max-w-md mx-auto">
+                <div id="irish-competition" class="mx-auto">
                     <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Irish Sporting Events</h1>
 
-                    <div id="how-to-input-info-container" class="p-4 mb-4 custom-alert-box rounded-lg border" role="alert">
-                        <div class="flex items-center">
-                          <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                          </svg>
-                          <span class="sr-only">Info</span>
-                          <h3 class="text-lg font-medium">Filling out entry form</h3>
-                          <button type="button" id="close-input-info-box" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" aria-label="Close">
-                            <span class="sr-only">Close</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                        </button>
-                        </div>
-                        <div class="mt-2 mb-4 text-sm">
-                            To fill out the form, start typing in the input box and select your desired option from the list. If you wish to change your selection, click the edit button on the right hand side of the input field.
-                        </div>
-                    </div>
+                    <div class="grid md:grid-cols-2 gap-2">
 
-                    <div id="more-info-box" class="flex items-center p-4 mb-4 text-black rounded-lg bg-yellow-50 border" role="alert">
-                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                        </svg>
-                        <span class="sr-only">Info</span>
-                        <div class="ms-3 text-sm font-medium">
-                          Don't know anything about a particular competition? Leave a field empty to have it selected by our quick pick algorithm!
+                        <div id="how-to-input-info-container" class="custom-alert-box" role="alert">
+                            <img id="irish-chimp" src="{{ URL('images/irish-chimp.jpg') }}" >
+
+                            <h1 class="custom-red-text font-extrabold text-2xl">First time?</h1>
+
+                            <p>
+                                Start typing to see competitors... maybe today is your lucky day!
+                            </p>
                         </div>
-                        <button type="button" id="close-more-info-box" class="ms-auto -mx-1.5 -my-1.5 bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-4" aria-label="Close">
-                          <span class="sr-only">Close</span>
-                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                          </svg>
-                        </button>
+
+                        <div id="how-to-input-info-container" class="custom-alert-box" role="alert">
+                            <img id="scientist-chimp" src="{{ URL('images/scientist-chimp.jpg') }}" >
+
+                            <h1 class="text-right custom-red-text font-extrabold text-2xl">Clueless?</h1>
+
+                            <p>
+                                Leave a field blank to have it selected by our quick pick algorithm!
+                            </p>
+                        </div>
                     </div>
 
                     <!-----------------Camogie-------------------->
-                    <div class="formRow">
-                        <label for="camogie" class="block mb-1 text-md font-medium text-gray-900">
-                            All Ireland Camogie Championship
-                        </label>
-                        @if($camogie_answer != '')
-                            <div class="flex items-center">
-                                <input id="camogie" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('camogie')->where('id', $camogie_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('camogie_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'camogie', 'nameCol' => 'name', 'eventId' => 17, 'fieldName' => 'camogie_answer'])
-                        @endif
-                        <br>
-                    </div>
-                    <!-----------------Hurling-------------------->
-                    <div class="formRow">
-                        <label for="hurling" class="block mb-1 text-md font-medium text-gray-900">
-                            All Ireland Hurling Championship
-                        </label>
-                        @if($hurling_answer != '')
-                            <div class="flex flex-center">
-                                <input id="hurling" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('hurling')->where('id', $hurling_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('hurling_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'hurling', 'nameCol' => 'name', 'eventId' => 14, 'fieldName' => 'hurling_answer'])
-                        @endif
-                        <br>
-                    </div>
-                    <!-----------------Ladies Gaelic Football-------------------->
-                    <div class="formRow">
-                        <label for="ladiesGaelic" class="block mb-1 text-md font-medium text-gray-900">
-                            Ladies Gaelic Football Championship
-                        </label>
-                        @if($ladies_gaelic_answer != '')
-                            <div class="flex flex-center">
-                                <input id="ladiesGaelic" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('ladies_gaelic')->where('id', $ladies_gaelic_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('ladies_gaelic_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'ladies_gaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer'])
-                        @endif
-                        <br>
-                    </div>
-                    <!-----------------All Ireland Gaelic Football-------------------->
-                    <div class="formRow">
-                        <label for="gaelic" class="block mb-1 text-md font-medium text-gray-900">
-                            All Ireland Gaelic Football
-                        </label>
-                        @if($gaelic_answer != '')
-                            <div class="flex flex-center">
-                                <input id="gaelic" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('gaelic')->where('id', $gaelic_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gaelic_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'gaelic', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gaelic_answer'])
-                        @endif
-                        <br>
-                    </div>
+                    <div class="wrapper mt-3 mx-auto md:flex md:flex-col">
+                        <div class="formRow md:ml-56">
+                            <label for="camogie" class="block mb-1 text-md font-medium text-gray-900">
+                                All Ireland Camogie Championship
+                            </label>
+                            @if($camogie_answer != '')
+                                <div class="flex items-center mx-auto">
+                                    <input id="camogie" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('camogie')->where('id', $camogie_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('camogie_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'camogie', 'nameCol' => 'name', 'eventId' => 17, 'fieldName' => 'camogie_answer'])
+                            @endif
+                            <br>
+                        </div>
+                        <!-----------------Hurling-------------------->
+                        <div class="formRow md:ml-56">
+                            <label for="hurling" class="block mb-1 text-md font-medium text-gray-900">
+                                All Ireland Hurling Championship
+                            </label>
+                            @if($hurling_answer != '')
+                                <div class="flex flex-center">
+                                    <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('hurling')->where('id', $hurling_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('hurling_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'hurling', 'nameCol' => 'name', 'eventId' => 14, 'fieldName' => 'hurling_answer'])
+                            @endif
+                            <br>
+                        </div>
+                        <!-----------------Ladies Gaelic Football-------------------->
+                        <div class="formRow md:ml-56">
+                            <label for="ladiesGaelic" class="block mb-1 text-md font-medium text-gray-900">
+                                Ladies Gaelic Football Championship
+                            </label>
+                            @if($ladies_gaelic_answer != '')
+                                <div class="flex flex-center">
+                                    <input id="ladiesGaelic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('ladies_gaelic')->where('id', $ladies_gaelic_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('ladies_gaelic_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'ladies_gaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer'])
+                            @endif
+                            <br>
+                        </div>
+                        <!-----------------All Ireland Gaelic Football-------------------->
+                        <div class="formRow md:ml-56">
+                            <label for="gaelic" class="block mb-1 text-md font-medium text-gray-900">
+                                All Ireland Gaelic Football
+                            </label>
+                            @if($gaelic_answer != '')
+                                <div class="flex flex-center">
+                                    <input id="gaelic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('gaelic')->where('id', $gaelic_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gaelic_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'gaelic', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gaelic_answer'])
+                            @endif
+                            <br>
+                        </div>
 
-                    <div class="flex flex-col items-center pb-10">
-                        <!-- Help text -->
-                        <span class="text-sm text-gray-700">
-                            Page <span class="font-semibold text-gray-900">{{ $currentPage }}</span> of <span class="font-semibold text-gray-900">{{ $maxPage }}</span>
-                        </span>
-                        <!-- Buttons -->
-                        <div class="inline-flex mt-2 xs:mt-0">
-                            <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 custom-back-button">
-                                Prev
-                            </button>
-                            <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 custom-next-button">
-                                Next
-                            </button>
+                        <div class="flex flex-col items-center pb-10">
+                            <!-- Help text -->
+                            <span class="text-sm text-gray-700">
+                                Page <span class="font-semibold text-gray-900">{{ $currentPage }}</span> of <span class="font-semibold text-gray-900">{{ $maxPage }}</span>
+                            </span>
+                            <!-- Buttons -->
+                            <div class="inline-flex mt-2 xs:mt-0">
+                                <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 custom-back-button">
+                                    Prev
+                                </button>
+                                <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 custom-next-button">
+                                    Next
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,7 +189,7 @@
                         </label>
                         @if($champions_cup_answer != '')
                             <div class="flex flex-center">
-                                <input id="championsCup" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_cup')->where('id', $champions_cup_answer)->first()->name }}" />
+                                <input id="championsCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_cup')->where('id', $champions_cup_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_cup_answer')">Edit</button>
                             </div>
                         @else
@@ -236,7 +205,7 @@
                         </label>
                         @if($champions_league_answer != '')
                             <div class="flex flex-center">
-                                <input id="championsLeague" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_league')->where('id', $champions_league_answer)->first()->name }}" />
+                                <input id="championsLeague" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_league')->where('id', $champions_league_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_league_answer')">Edit</button>
                             </div>
                         @else
@@ -253,7 +222,7 @@
                         </label>
                         @if($champion_hurdle_answer != '')
                             <div class="flex flex-center">
-                                <input id="championHurdle" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('champion_hurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
+                                <input id="championHurdle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champion_hurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champion_hurdle_answer')">Edit</button>
                             </div>
                         @else
@@ -268,7 +237,7 @@
                         </label>
                         @if($gold_cup_answer != '')
                             <div class="flex flex-center">
-                                <input id="goldCup" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('gold_cup')->where('id', $gold_cup_answer)->first()->name }}" />
+                                <input id="goldCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('gold_cup')->where('id', $gold_cup_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gold_cup_answer')">Edit</button>
                             </div>
                         @else
@@ -286,7 +255,7 @@
                             </label>
                             @if($wimbledon_ladies_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="hurling" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_ladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
+                                    <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_ladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_ladies_answer')">Edit</button>
                                 </div>
                             @else
@@ -302,7 +271,7 @@
                             </label>
                             @if($wimbledon_mens_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="wimbledonMens" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_mens')->where('id', $wimbledon_mens_answer)->first()->name }}" />
+                                    <input id="wimbledonMens" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_mens')->where('id', $wimbledon_mens_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_mens_answer')">Edit</button>
                                 </div>
                             @else
@@ -333,22 +302,12 @@
                     <div id="golfers" class="max-w-md mx-auto">
                         <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Golfers</h1>
 
-                        <div id="golf-info-container" class="p-4 mb-4 custom-alert-box border rounded-lg" role="alert">
-                            <div class="flex items-center">
-                              <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                              </svg>
-                              <span class="sr-only">Info</span>
-                              <h3 class="text-lg font-medium">Chosing Golfers</h3>
-                            </div>
-                            <div class="mt-2 mb-2 text-sm">
-                                <p>Choose 3 golfers who will compete for you at each of the golf events! Points will be awarded up to 10 places. The golf events in Champ or Chimp 2024:</p>
-                                <ul style="list-style-type:disc" class="px-5 py-2">
-                                    <li>US Masters</li>
-                                    <li>US PGA</li>
-                                    <li>Brittish Open</li>
-                                </ul>
-                            </div>
+                        <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
+                            <img id="golfing-chimp" src="{{ URL('/images/golfing-chimp.jpg') }}" >
+                            <h1 class="text-right custom-red-text font-extrabold text-2xl">Know your golf?</h1>
+                            <p>
+                              Pick 3 golfers to compete for you in the 4 Majors
+                            </p>
                         </div>
     
                         <!-----------------Golfer 1 -------------------->
@@ -358,7 +317,7 @@
                             </label>
                             @if($golf_1_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="golf1" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_1_answer)->first()->name }}" />
+                                    <input id="golf1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_1_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_1_answer')">Edit</button>
                                 </div>
                             @else
@@ -373,7 +332,7 @@
                             </label>
                             @if($golf_2_answer != '')
                                 <div class="flex flex-row">
-                                    <input id="golf2" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_2_answer)->first()->name }}" />
+                                    <input id="golf2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_2_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_2_answer')">Edit</button>
                                 </div>
                             @else
@@ -388,7 +347,7 @@
                             </label>
                             @if($golf_3_answer != '')
                                 <div class="flex flex-row">
-                                    <input id="golf3" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_3_answer)->first()->name }}" />
+                                    <input id="golf3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('golf')->where('id', $golf_3_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_3_answer')">Edit</button>
                                 </div>
                             @else
@@ -418,17 +377,13 @@
                     <div id="double-points-section" class="max-w-md mx-auto">
                         <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Double Points</h1>
 
-                        <div id="double-points-info-container" class="p-4 mb-4 custom-alert-box border rounded-lg" role="alert">
-                            <div class="flex items-center">
-                              <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                              </svg>
-                              <span class="sr-only">Info</span>
-                              <h3 class="text-lg font-medium">Double Points</h3>
-                            </div>
-                            <div class="mt-2 mb-2 text-sm">
-                                <p>Take this opportunity to DOUBLE down! Select the 4 events which you think your selection is a shoo-in, to receive double the points towards your competition score.</p>
-                            </div>
+
+                        <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
+                            <img id="cute-chimp" src="{{ URL('/images/cute-chimp.jpg') }}" >
+                            <h1 class="text-right custom-red-text font-extrabold text-2xl">Double Down!</h1>
+                            <p>
+                              Pick your 4 best competitions to be awarded double points!
+                            </p>
                         </div>
     
                         <!-------------------  Double Points 1 ----------------------------->
@@ -438,7 +393,7 @@
                             </label>
                             @if($double_points_1_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="doublePoints1" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_1_answer)->first()->name }}" />
+                                    <input id="doublePoints1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_1_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_1_answer')">Edit</button>
                                 </div>
                             @else
@@ -453,7 +408,7 @@
                             </label>
                             @if($double_points_2_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="doublePoints2" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_2_answer)->first()->name }}" />
+                                    <input id="doublePoints2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_2_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_2_answer')">Edit</button>
                                 </div>
                             @else
@@ -468,7 +423,7 @@
                             </label>
                             @if($double_points_3_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="doublePoints3" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_3_answer)->first()->name }}" />
+                                    <input id="doublePoints3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_3_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_3_answer')">Edit</button>
                                 </div>
                             @else
@@ -483,7 +438,7 @@
                             </label>
                             @if($double_points_4_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="doublePoints3" class="grow bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_4_answer)->first()->name }}" />
+                                    <input id="doublePoints3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('event')->where('id', $double_points_4_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_4_answer')">Edit</button>
                                 </div>
                             @else
@@ -502,7 +457,7 @@
                                     Prev
                                 </button>
                                 <button type="submit" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
-                                    Submit
+                                    Add To Cart
                                 </button>
                             </div>
                         </div>
@@ -525,6 +480,7 @@
 
         $(document).on('click', '#landing-page-next-button', function() {
             if ($('#quick-pick').is(":checked")){
+                // work on showing a modal here tomorrow
                 $wire.submit();
             } else {
                 let currPage = @this.get('currentPage');
@@ -561,6 +517,14 @@
         $(document).on('click', '#close-more-info-box', function() {
             $('#more-info-box').toggle();
         });
+
+        $(document).on('change', '#quick-pick', function() {
+            if ($('#quick-pick').is(":checked")){
+                $('#landing-page-next-button').html("Add To Cart");
+            } else {
+                $('#landing-page-next-button').html("Next");
+            }
+        })
 
     </script>
     @endscript

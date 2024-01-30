@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.0",
+        "mindscms/laravelshoppingcart": "^2.1",
         "reliese/laravel": "^1.2"
     },
     "require-dev": {

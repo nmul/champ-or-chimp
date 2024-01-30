@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+
 use App\Livewire\LOG;
 use App\Models\AnswerEvent;
 use App\Models\ChampionsLeague;
@@ -21,51 +22,87 @@ use App\Models\Hurling;
 use App\Models\LadiesGaelic;
 use App\Models\WibmledonLady;
 use App\Models\WibmledonMen;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
-class Entryform extends Component
+class Entryform extends Component implements Buyable
 {
+    public $id;
+    public $currentPage = 0;
+    public $maxPage = 4;
 
-        public $currentPage = 0;
-        public $maxPage = 4;
-    
-        public $firstName = '';
-        public $lastName = '';
-        public $email = '';
-        public $champion_hurdle_answer = '';
-        public $gold_cup_answer = '';
-        public $champions_cup_answer = '';
-        public $champions_league_answer = '';
-        public $wimbledon_ladies_answer = '';
-        public $wimbledon_mens_answer = '';
-        public $hurling_answer = '';
-        public $gaelic_answer = '';
-        public $ladies_gaelic_answer = '';
-        public $camogie_answer = '';
-        public $golf_1_answer = '';
-        public $golf_2_answer = '';
-        public $golf_3_answer = '';
-        public $double_points_1_answer = '';
-        public $double_points_2_answer = '';
-        public $double_points_3_answer = '';
-        public $double_points_4_answer = '';
-        public $is_quick_pick = false;
+    public $firstName = '';
+    public $lastName = '';
+    public $email = '';
+    public $champion_hurdle_answer = '';
+    public $gold_cup_answer = '';
+    public $champions_cup_answer = '';
+    public $champions_league_answer = '';
+    public $wimbledon_ladies_answer = '';
+    public $wimbledon_mens_answer = '';
+    public $hurling_answer = '';
+    public $gaelic_answer = '';
+    public $ladies_gaelic_answer = '';
+    public $camogie_answer = '';
+    public $golf_1_answer = '';
+    public $golf_2_answer = '';
+    public $golf_3_answer = '';
+    public $double_points_1_answer = '';
+    public $double_points_2_answer = '';
+    public $double_points_3_answer = '';
+    public $double_points_4_answer = '';
+    public $is_quick_pick = false;
 
-        #[On('answerEventCreated')]
-        public function answerEventCreated($answerEvent){
-            $answerId = $answerEvent['answerId'];
-            $eventId = $answerEvent['eventId'];
-            $fieldName = $answerEvent['fieldName'];
-            $this->$fieldName = $answerId;
-        }
+    public $formObj;
 
-        public function setFieldAsNull(string $fieldName){
-            $this->$fieldName = null;
-        }
+    #[On('answerEventCreated')]
+    public function answerEventCreated($answerEvent){
+        $answerId = $answerEvent['answerId'];
+        $eventId = $answerEvent['eventId'];
+        $fieldName = $answerEvent['fieldName'];
+        $this->$fieldName = $answerId;
+    }
+
+    public function setFieldAsNull(string $fieldName){
+        $this->$fieldName = null;
+    }
+
+    public function addToCart(){
+        $id = Str::random(30);
+        $cart = [];
+        $cart[$id] = [
+            "id" => $id,
+            "firstName" => $this->firstName,
+            "lastName" => $this->lastName,
+            "email" => $this->email,
+            "champion_hurdle_answer" => $this->champion_hurdle_answer,
+            "gold_cup_answer" => $this->gold_cup_answer,
+            "champions_cup_answer" => $this->champions_cup_answer,
+            "champions_league_answer" => $this->champions_league_answer,
+            "wimbledon_ladies_answer" => $this->wimbledon_ladies_answer,
+            "wimbledon_mens_answer" => $this->wimbledon_mens_answer,
+            "hurling_answer" => $this->hurling_answer,
+            "gaelic_answer" => $this->gaelic_answer,
+            "ladies_gaelic_answer" => $this->ladies_gaelic_answer,
+            "camogie_answer" => $this->camogie_answer,
+            "golf_1_answer" => $this->golf_1_answer,
+            "golf_2_answer" => $this->golf_2_answer,
+            "golf_3_answer" => $this->golf_3_answer,
+            "double_points_1_answer" => $this->double_points_1_answer,
+            "double_points_2_answer" => $this->double_points_2_answer,
+            "double_points_3_answer" => $this->double_points_3_answer,
+            "double_points_4_answer" => $this->double_points_4_answer,
+            "is_quick_pick" => $this->is_quick_pick,
+        ];
+        session()->put('cart', $cart);
+        $this->redirect(CartPage::class);  
+    }
 
     public function submit() {        
         // fix later please
@@ -220,21 +257,21 @@ class Entryform extends Component
         }
     }
 
+    function getBuyableDescription(mixed $options = null){
+        return 'champ or chimp form';
+    }
+    function getBuyableIdentifier(mixed $options = null) {
+        $this->id = Str::random(30);
+        return $this->id;
+    }
+    function getBuyablePrice(mixed $options = null){
+        return 10;
+    }
+
     public function render()
     {
 
-        $camogie = Camogie::all();
-        $championHurdle = ChampionHurdle::all();
-        $championsCup = ChampionsCup::all();
-        $championsleague = ChampionsLeague::all();
-        $gaelic = Gaelic::all();
-        $goldCup = GoldCup::all();
-        $golf = Golf::all();
-        $hurling = Hurling::all();
-        $ladiesGaelic = LadiesGaelic::all();
-        $wimbledonLady = WibmledonLady::all();
-        $wimbledonMen = WibmledonMen::all();
-        // 12 is the id of the 2024 competition
+        
         $competition_id = 12;
         $competition = Competition::find($competition_id);
         $event_ids = DB::table('events_in_competition')
@@ -247,17 +284,6 @@ class Entryform extends Component
 
 
         return view('livewire.entry-form', [
-            'camogie' => $camogie,
-            'championHurdle'=> $championHurdle,
-            'championsCup' => $championsCup,
-            'championsleague' => $championsleague,
-            'gaelic' => $gaelic,
-            'goldCup' => $goldCup,
-            'golf' => $golf,
-            'hurling' => $hurling,
-            'ladiesGaelic' => $ladiesGaelic,
-            'wimbledonLady' => $wimbledonLady,
-            'wimbledonMen' => $wimbledonMen,
             'competition' => $competition,
             'event_ids'=> $event_ids,
             'events' => $events,

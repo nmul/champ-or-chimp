@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: 'Museo', sans-serif;
-}
-
 .low-opacity-bg-image {
 
     background-repeat: no-repeat; 
@@ -42,10 +38,75 @@ body {
 }
 
 .custom-alert-box {
+    width: 330px;
+    height: 200px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+    position: relative;
     background-color: #FEC051;
     color: black;
     --tw-border-opacity: 1;
     border-color: #F48142;
+}
+
+.custom-alert-box h1 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.custom-alert-box img{
+    height: 90px;
+    width: 90px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -40px;
+    left: 20px;
+}
+
+.custom-alert-box #cute-chimp {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 20px;
+}
+
+.custom-alert-box #irish-chimp {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 200px
+}
+
+.custom-alert-box #scientist-chimp {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 20px
+}
+
+.custom-alert-box #golfing-chimp {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 20px
+}
+
+.custom-alert-box #winner-chimp {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 20px;
+}
+
+.custom-alert-box p {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .orange-border {
@@ -62,4 +123,10 @@ body {
 
 .edit-field-button {
     background-color: #CB3057;
+}
+
+#jackpot-image {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
 }

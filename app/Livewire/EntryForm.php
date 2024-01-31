@@ -37,6 +37,7 @@ class Entryform extends Component implements Buyable
     public $currentPage = 0;
     public $maxPage = 4;
 
+    public $enteringForSomeone = false;
     public $firstName = '';
     public $lastName = '';
     public $email = '';
@@ -58,8 +59,38 @@ class Entryform extends Component implements Buyable
     public $double_points_3_answer = '';
     public $double_points_4_answer = '';
     public $is_quick_pick = false;
+    
 
-    public $formObj;
+    public function mount($id = null){
+        if (isset($id) && session()->get('cart')[$id] != null){
+            $cart = session()->get('cart');
+            $cartForm = $cart[$id];
+            $this->id = $id;
+            $this->enteringForSomeone = $cartForm['enteringForSomeone'];
+            $this->firstName = $cartForm['firstName'];
+            $this->lastName = $cartForm['lastName'];
+            $this->email = $cartForm['email'];
+            $this->champion_hurdle_answer = $cartForm['champion_hurdle_answer'];
+            $this->gold_cup_answer = $cartForm['gold_cup_answer'];
+            $this->champions_cup_answer = $cartForm['champions_cup_answer'];
+            $this->champions_league_answer = $cartForm['champions_league_answer'];
+            $this->wimbledon_ladies_answer = $cartForm['wimbledon_ladies_answer'];
+            $this->wimbledon_mens_answer = $cartForm['wimbledon_mens_answer'];
+            $this->hurling_answer = $cartForm['hurling_answer'];
+            $this->gaelic_answer = $cartForm['gaelic_answer'];
+            $this->ladies_gaelic_answer = $cartForm['ladies_gaelic_answer'];
+            $this->golf_1_answer = $cartForm['golf_1_answer'];
+            $this->golf_2_answer = $cartForm['golf_2_answer'];
+            $this->golf_3_answer = $cartForm['golf_3_answer'];
+            $this->double_points_1_answer = $cartForm['double_points_1_answer'];
+            $this->double_points_2_answer = $cartForm['double_points_2_answer'];
+            $this->double_points_3_answer = $cartForm['double_points_3_answer'];
+            $this->double_points_4_answer = $cartForm['double_points_4_answer'];
+            $this->is_quick_pick = $cartForm['is_quick_pick'];
+        } else {
+            $this->entryForm = new EntryForm();
+        }
+    }
 
     #[On('answerEventCreated')]
     public function answerEventCreated($answerEvent){
@@ -74,13 +105,20 @@ class Entryform extends Component implements Buyable
     }
 
     public function addToCart(){
-        $id = Str::random(30);
-        $cart = [];
-        $cart[$id] = [
-            "id" => $id,
-            "firstName" => $this->firstName,
-            "lastName" => $this->lastName,
-            "email" => $this->email,
+        $user = Auth::user();
+        $formFirst = $this->firstName == '' ? $user->first_name : $this->firstName;
+        $formLast = $this->lastName == '' ? $user->last_name : $this->lastName;
+        $formEmail = $this->email == '' ? $user->email : $this->email;
+        if (empty($this-> id)){
+            $this->id = Str::random(30);
+        }
+        $cart = session()->get('cart', []);
+        $cart[$this->id] = [
+            "id" => $this->id,
+            "enteringForSomeone" => $this->enteringForSomeone,
+            "firstName" => $formFirst,
+            "lastName" => $formLast,
+            "email" => $formEmail,
             "champion_hurdle_answer" => $this->champion_hurdle_answer,
             "gold_cup_answer" => $this->gold_cup_answer,
             "champions_cup_answer" => $this->champions_cup_answer,
@@ -98,7 +136,7 @@ class Entryform extends Component implements Buyable
             "double_points_2_answer" => $this->double_points_2_answer,
             "double_points_3_answer" => $this->double_points_3_answer,
             "double_points_4_answer" => $this->double_points_4_answer,
-            "is_quick_pick" => $this->is_quick_pick,
+            "is_quick_pick" => $this->is_quick_pick
         ];
         session()->put('cart', $cart);
         $this->redirect(CartPage::class);  
@@ -261,7 +299,6 @@ class Entryform extends Component implements Buyable
         return 'champ or chimp form';
     }
     function getBuyableIdentifier(mixed $options = null) {
-        $this->id = Str::random(30);
         return $this->id;
     }
     function getBuyablePrice(mixed $options = null){

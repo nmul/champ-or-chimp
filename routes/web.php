@@ -25,9 +25,10 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/entry', Entryform::class)->middleware(['auth'])->name('entry');
+Route::get('/entry', Entryform::class)->name('entryform');
+Route::get('/entry/{id}', Entryform::class)->name('entryform');
 
-Route::get('/cart', CartPage::class);
+Route::get('/cart', CartPage::class)->name('cart');
 
 
 require __DIR__.'/auth.php';

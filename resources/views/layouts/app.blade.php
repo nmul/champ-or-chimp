@@ -18,6 +18,7 @@
                 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
                 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
                 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+                <script src="https://kit.fontawesome.com/b850c02dfa.js" crossorigin="anonymous"></script>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             <livewire:layout.navigation />

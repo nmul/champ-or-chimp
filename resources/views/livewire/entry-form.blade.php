@@ -9,12 +9,12 @@
                     <h1 class="text-3xl font-extrabold mx-auto custom-red-text text-center">Entry Form 2024</h1>
                     <div class="flex items-start mb-3 mt-3">
                         <div class="flex items-center h-5">
-                            <input id="enter-for-other" type="checkbox" value="" class="w-4 h-4 border ml-2 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <input id="enteringForSomeone" wire:model="enteringForSomeone" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                         </div>
-                        <label for="enter-for-other" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>
+                        <label for="enteringForSomeone" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>
                     </div>
 
-                    <div id="other-entry-div" class="hidden">
+                    <div id="other-entry-div">
                         <div class="mb-5">
                             <label for="firstName" class="block mb-2 text-md font-medium text-gray-900">Entrant's First Name</label>
                             <input wire:model="firstName" type="text" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="First Name">
@@ -28,6 +28,7 @@
                             <input wire:model="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="Email">
                         </div>
                     </div>
+
 
                     <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
                         <img id="winner-chimp" src="{{ URL('/images/winner-chimp.jpg') }}" >
@@ -474,14 +475,23 @@
     <script>
 
         $(document).ready(function () {
-           
+            if ($('#enteringForSomeone').is(":checked")){
+                $('#other-entry-div').show();
+            } else {
+                $('#other-entry-div').hide();
+            }
 
+            if ($('#quick-pick').is(":checked")){
+                $('#landing-page-next-button').html("Add To Cart");
+            } else {
+                $('#landing-page-next-button').html("Next");
+            }
         });
 
         $(document).on('click', '#landing-page-next-button', function() {
             if ($('#quick-pick').is(":checked")){
                 // work on showing a modal here tomorrow
-                $wire.submit();
+                $wire.addToCart();
             } else {
                 let currPage = @this.get('currentPage');
                 @this.set('currentPage', currPage + 1);
@@ -498,7 +508,7 @@
             @this.set('currentPage', currPage - 1);
         });
 
-        $(document).on('change', '#enter-for-other', function() {
+        $(document).on('change', '#enteringForSomeone', function() {
             $('#other-entry-div').toggle();
         });
 

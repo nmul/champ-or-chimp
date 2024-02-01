@@ -9,7 +9,12 @@
             <div id="checkout-container">
                 <h1>This is where the checkout will be</h1>
             </div>
-        </div>   
+        </div>
+        <form wire:submit="checkout" method="POST">
+            @csrf
+
+            <button>Checkout</button>
+        </form>
     @else
         <h1>You have nothing in your cart</h1>
     @endif

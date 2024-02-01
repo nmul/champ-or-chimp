@@ -1,9 +1,10 @@
 <?php
 
+use App\Livewire\StripeComponent;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Entryform;
 use App\Livewire\CartPage;
-
+use App\Http\Controllers\StripeController\checkout;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,8 +28,7 @@ Route::view('profile', 'profile')
 
 Route::get('/entry', Entryform::class)->name('entryform');
 Route::get('/entry/{id}', Entryform::class)->name('entryform');
-
+Route::post('checkout', CartPage::class)->name('checkout');
 Route::get('/cart', CartPage::class)->name('cart');
-
 
 require __DIR__.'/auth.php';

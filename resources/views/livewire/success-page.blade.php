@@ -1,6 +1,7 @@
 <div>
-    
     @if(session('cart'))
+
+        YOU ARE FINDING THE STUFF IN THE CART
         <div class="container grid md:grid-cols-2 mx-auto">
             <div id="order-container">
                 @foreach(session('cart') as $id => $details)
@@ -11,13 +12,7 @@
                 <h1>This is where the checkout will be</h1>
             </div>
         </div>
-        <form action="POST" wire:submit="checkout">
-            @csrf
-            <button type="submit" class="bg-white text-black">
-                Pay
-            </button>
-       </form>
     @else
-        <h1>You have nothing in your cart</h1>
+        Cyka Blyat
     @endif
 </div>

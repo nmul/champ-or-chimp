@@ -2,13 +2,15 @@
 
 namespace App\Livewire;
 
+use Illuminate\Http\Request;
 use Livewire\Component;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\Entry;
+
 
 class CartPage extends Component
 {
 
-    public function checkout(){
+    public function checkout(Request $request){
         \Stripe\Stripe::setApiKey(config("stripe.sk"));
 
         $cart = session()->get('cart');
@@ -20,7 +22,7 @@ class CartPage extends Component
         $plur = (string)$count . " Champ or Chimp 2024 Entry Forms";
         $singular = "1 Champ or Chimp 2024 Entry Form";
         $nameMessage = $count > 1 ? $plur : $singular;
-        $cost = $count * 1000;
+        $cost = Entry::calculate_price($count);
         $session = \Stripe\Checkout\Session::create([
             'line_items'  => [
                 [
@@ -35,9 +37,10 @@ class CartPage extends Component
                 ],
             ],
             'mode'        => 'payment',
-            'success_url' => url('cart'),
+            'success_url' => url('success-page'),
             'cancel_url'  => url('cart'),
         ]);
+        session()->save();
         return redirect()->away($session->url);
     }
 

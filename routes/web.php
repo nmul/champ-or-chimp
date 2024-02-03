@@ -1,10 +1,12 @@
 <?php
 
 use App\Livewire\StripeComponent;
+use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Entryform;
 use App\Livewire\CartPage;
 use App\Http\Controllers\StripeController\checkout;
+use App\Services\create;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +33,8 @@ Route::get('/entry/{id}', Entryform::class)->name('entryform');
 Route::post('checkout', CartPage::class)->name('checkout');
 Route::get('/cart', CartPage::class)->name('cart');
 
+Route::get('/success-page', SuccessPage::class)->name('success-page');
+
+
+Route::post('/webhook', [App\Http\Controllers\StripeController::class, 'webhook'])->name('webhook');
 require __DIR__.'/auth.php';

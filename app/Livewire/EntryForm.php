@@ -113,6 +113,8 @@ class Entryform extends Component implements Buyable
             $this->id = Str::random(30);
         }
         $cart = session()->get('cart', []);
+
+
         $cart[$this->id] = [
             "id" => $this->id,
             "enteringForSomeone" => $this->enteringForSomeone,

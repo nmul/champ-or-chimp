@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Cart;
 use App\Models\Entry;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
@@ -22,9 +23,9 @@ class AddOrderToDatabaseJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct($userId, $cart)
+    public function __construct($userId, Cart $cart)
     {
-        $this->user = $userId;
+        $this->userId = $userId;
         $this->cart = $cart;
     }
 
@@ -33,15 +34,15 @@ class AddOrderToDatabaseJob implements ShouldQueue
      */
     public function handle(): void
     {
-         // create order entry
-        $user = Auth::user();
-        $numberOfForms = count((array) $this->cart);
-        error_log($numberOfForms);
+        $numberOfForms = $this->cart->number_of_forms;
+        error_log((string)$numberOfForms . " : number of forms");
         $order = new Order();
-        $order->user_id = $user -> id;
-        $amount_paid_cents = Entry::calculate_price($numberOfForms);
-        error_log($amount_paid_cents);
-        $order -> amount_paid_cents = $amount_paid_cents;
+        $order-> user_id = $this->userId;
+        error_log((string) $this->userId . " : user id");
+
+        $current_cost = $this -> cart->current_cost;
+        error_log((string)$current_cost . " : current cost");
+        $order -> amount_paid_cents = $current_cost;
         $order->number_of_forms = $numberOfForms;
         Order::create($order->toArray());
     }

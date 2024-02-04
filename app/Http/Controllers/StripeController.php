@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\PaymentReceived;
+use App\Jobs\AddOrderToDatabaseJob;
+use App\Models\Cart;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\Entry;
 use App\Models\MissingField;
@@ -52,6 +55,10 @@ class StripeController extends BaseController
         if ($event->type == "payment_intent.succeeded") {
             $intent = $event->data->object;
             printf("Succeeded: %s", $intent->id);
+            $token = Session::get('cart_token');
+            $cart = Cart::where('unique_identifier', $token)->first();
+            dispatch(new AddOrderToDatabaseJob(Auth::user()->id, $cart));
+            error_log("run job ");
             http_response_code(200);
         } elseif ($event->type == "payment_intent.payment_failed") {
             $intent = $event->data->object;

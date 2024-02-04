@@ -1,14 +1,13 @@
 <div>
     
-    @if(session('cart'))
-        <div class="container grid md:grid-cols-2 mx-auto">
+    @if($cart)
+        <h1 class="text-center text-2xl font-extrabold">Order details</h1>
+        <div class="container max-w-md mx-auto">
             <div id="order-container">
-                @foreach(session('cart') as $id => $details)
-                    @livewire(FormDisplay::class, ['details' => $details, 'loopIteration' => $loop->iteration], key($details['id']))
+
+                @foreach($cart as $details)
+                    @livewire(FormDisplay::class, ['details' => $details, 'loopIteration' => $loop->iteration, 'total' => count($cart)], key($details->id))
                 @endforeach
-            </div>
-            <div id="checkout-container">
-                <h1>This is where the checkout will be</h1>
             </div>
         </div>
         <form action="POST" wire:submit="checkout">

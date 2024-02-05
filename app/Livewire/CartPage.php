@@ -45,7 +45,7 @@ class CartPage extends Component
             'cancel_url'  => url('cart'),
             'payment_intent_data' => [
                 'metadata' => [
-                    'order_id' => $token,
+                    'cart_token' => $token,
                 ],
             ],
         ]);

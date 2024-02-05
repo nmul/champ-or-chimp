@@ -54,11 +54,8 @@ class StripeController extends BaseController
 
         if ($event->type == "payment_intent.succeeded") {
             $intent = $event->data->object;
-            ds($intent);
-            $token = $intent->metadata['order_id'];
-            ds($intent->metadata);
+            $token = $intent->metadata['cart_token'];
             $cart = Cart::where('unique_identifier', $token)->first();
-            ds($cart);
             dispatch(new AddOrderToDatabaseJob($cart));
             $cartData = Cart::getCartItemsAsArrayFromToken($cart);
             dispatch(new addEntryToDatabase($cart->user_id, $cartData));

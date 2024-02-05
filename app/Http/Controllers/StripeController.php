@@ -54,10 +54,14 @@ class StripeController extends BaseController
 
         if ($event->type == "payment_intent.succeeded") {
             $intent = $event->data->object;
-            printf("Succeeded: %s", $intent->id);
-            $token = Session::get('cart_token');
+            ds($intent);
+            $token = $intent->metadata['order_id'];
+            ds($intent->metadata);
             $cart = Cart::where('unique_identifier', $token)->first();
-            dispatch(new AddOrderToDatabaseJob(Auth::user()->id, $cart));
+            ds($cart);
+            dispatch(new AddOrderToDatabaseJob($cart));
+            $cartData = Cart::getCartItemsAsArrayFromToken($cart);
+            dispatch(new addEntryToDatabase($cart->user_id, $cartData));
             error_log("run job ");
             http_response_code(200);
         } elseif ($event->type == "payment_intent.payment_failed") {
@@ -66,7 +70,6 @@ class StripeController extends BaseController
             printf("Failed: %s, %s", $intent->id, $error_message);
             http_response_code(200);
         }
-
         http_response_code(200);
     }
 

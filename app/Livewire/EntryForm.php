@@ -64,7 +64,9 @@ class Entryform extends Component implements Buyable
     
 
     public function mount($id = null){
-        $cartItems = Cart::getCartItemsAsArrayFromToken();
+        $token = Session::get('cart_token');
+        $cart = Cart::where('unique_identifier', $token)->first();
+        $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
         if (isset($id) && $cartItems != null && $cartItems[$id] != null){
             $cartForm = $cartItems[$id];
             $this->id = $id;

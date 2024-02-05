@@ -33,7 +33,7 @@ class FormDisplay extends Component
     {
         $token = $request->session()->get('cart_token');
         $cart = Cart::where('unique_identifier', $token)->first();
-        $cartItems = Cart::getCartItemsAsArrayFromToken();
+        $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
         unset($cartItems[$entryFormId]);
         $cart->data = $cartItems;
         $cart_as_json = json_encode($cart->data);

@@ -21,7 +21,7 @@ class CartPage extends Component
         if (is_null($cart)) {
             return redirect()->back()->with('error','Cart is empty');
         }
-        $cartData = Cart::getCartItemsAsArrayFromToken();
+        $cartData = Cart::getCartItemsAsArrayFromToken($cart);
         $count = $cart -> number_of_forms;
         $plur = (string)$count . " Champ or Chimp 2024 Entry Forms";
         $singular = "1 Champ or Chimp 2024 Entry Form";
@@ -43,6 +43,11 @@ class CartPage extends Component
             'mode'        => 'payment',
             'success_url' => url('success-page'),
             'cancel_url'  => url('cart'),
+            'payment_intent_data' => [
+                'metadata' => [
+                    'order_id' => $token,
+                ],
+            ],
         ]);
         return redirect()->away($session->url);
     }

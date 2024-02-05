@@ -16,16 +16,13 @@ use Illuminate\Support\Facades\Auth;
 class AddOrderToDatabaseJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    private $userId;
     private $cart;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($userId, Cart $cart)
+    public function __construct(Cart $cart)
     {
-        $this->userId = $userId;
         $this->cart = $cart;
     }
 
@@ -37,8 +34,8 @@ class AddOrderToDatabaseJob implements ShouldQueue
         $numberOfForms = $this->cart->number_of_forms;
         error_log((string)$numberOfForms . " : number of forms");
         $order = new Order();
-        $order-> user_id = $this->userId;
-        error_log((string) $this->userId . " : user id");
+        $order-> user_id = $this->cart -> user_id;
+        error_log((string) $this->cart -> user_id . " : user id");
 
         $current_cost = $this -> cart->current_cost;
         error_log((string)$current_cost . " : current cost");

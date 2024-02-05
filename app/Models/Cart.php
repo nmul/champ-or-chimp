@@ -21,14 +21,8 @@ class Cart extends Model
      * if there are items in the cart it loops over the cart items and converts them to associative array
      * it returns the cartItems as an array
      */
-    public static function getCartItemsAsArrayFromToken() 
+    public static function getCartItemsAsArrayFromToken($cart) 
     {
-        $token = Session::get('cart_token');
-        if (!$token){
-            $token = Str::uuid()->toString();
-            Session::put('cart_token', $token);
-        }
-        $cart = Cart::where('unique_identifier', $token)->first();
         $cartItems = [];
         $cart_is_present = true;
         if (is_null($cart)) {

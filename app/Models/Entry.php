@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $double_points_3_id
  * @property int $double_points_4_id
  * @property bool $is_quick_pick
+ * @property string $order_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -52,7 +53,8 @@ class Entry extends Model
 		'double_points_2_id' => 'int',
 		'double_points_3_id' => 'int',
 		'double_points_4_id' => 'int',
-		'is_quick_pick' => 'bool'
+		'is_quick_pick' => 'bool',
+		'order_id' => 'string',
 	];
 
 	protected $fillable = [
@@ -68,7 +70,8 @@ class Entry extends Model
 		'double_points_2_id',
 		'double_points_3_id',
 		'double_points_4_id',
-		'is_quick_pick'
+		'is_quick_pick',
+		'order_id',
 	];
 
 	public function competition()

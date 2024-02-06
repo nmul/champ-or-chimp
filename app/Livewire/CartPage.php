@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Cart;
 use App\Models\Entry;
@@ -27,6 +28,8 @@ class CartPage extends Component
         $singular = "1 Champ or Chimp 2024 Entry Form";
         $nameMessage = $count > 1 ? $plur : $singular;
         $cost = $cart -> current_cost;
+        $order_number = Str::uuid()->toString();
+        error_log("order number " . $order_number);
         $session = \Stripe\Checkout\Session::create([
             'line_items'  => [
                 [
@@ -46,6 +49,7 @@ class CartPage extends Component
             'payment_intent_data' => [
                 'metadata' => [
                     'cart_token' => $token,
+                    'order_number' => $order_number,
                 ],
             ],
         ]);
@@ -64,6 +68,7 @@ class CartPage extends Component
         }
         return view('livewire.cart-page',[
             'cart'=> $cartData,
+            'cartWrapper' => $cart,
         ])->layout('layouts.app');
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\PaymentReceived;
-use App\Jobs\AddOrderToDatabaseJob;
+
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -16,6 +17,7 @@ use App\Models\Entry;
 use App\Models\MissingField;
 use App\Models\Prediction;
 use App\Jobs\addEntryToDatabase;
+use App\Jobs\AddOrderToDatabaseJob;
 
 class StripeController extends BaseController
 {
@@ -55,11 +57,18 @@ class StripeController extends BaseController
         if ($event->type == "payment_intent.succeeded") {
             $intent = $event->data->object;
             $token = $intent->metadata['cart_token'];
+            $order_number = $intent->metadata['order_number'];
             $cart = Cart::where('unique_identifier', $token)->first();
-            dispatch(new AddOrderToDatabaseJob($cart));
             $cartData = Cart::getCartItemsAsArrayFromToken($cart);
-            dispatch(new addEntryToDatabase($cart->user_id, $cartData));
-            error_log("run job ");
+            dispatch(new addEntryToDatabase($cart->user_id, $cartData, $order_number));
+            $order = new Order();
+            $numberOfForms = $cart->number_of_forms;
+            $order-> user_id = $cart -> user_id;
+            $current_cost = $cart->current_cost;
+            $order -> amount_paid_cents = $current_cost;
+            $order->number_of_forms = $numberOfForms;
+            $order-> order_number = $order_number;
+            Order::create($order->toArray());
             $cart -> delete();
             http_response_code(200);
         } elseif ($event->type == "payment_intent.payment_failed") {

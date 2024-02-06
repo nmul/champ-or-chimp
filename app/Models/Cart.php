@@ -14,7 +14,7 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'unique_identifier', 'data', 'created_at', 'updated_at', 'number_of_forms', 'current_cost'];
+    protected $fillable = ['user_id', 'unique_identifier', 'data', 'created_at', 'updated_at', 'number_of_forms', 'current_cost', 'order_number'];
 
     /**
      * This function gets the cart token and checks if there is a cart in session for current user.
@@ -47,7 +47,7 @@ class Cart extends Model
         $encrypted_cart = Crypt::encrypt($cart_as_json);
         $number_of_forms = count($cartItems);
         $current_cost = Entry::calculate_price($number_of_forms);
-        
+        $order_number = $cart->order_number;
         $cart = Cart::updateOrCreate(
             ['unique_identifier' => $token],
             [
@@ -55,6 +55,7 @@ class Cart extends Model
                 'user_id' => Auth::id(),
                 'number_of_forms' => $number_of_forms,
                 'current_cost' => $current_cost,
+                'order_number' => $order_number,
             ]
         );
     }

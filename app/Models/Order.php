@@ -18,8 +18,9 @@ class Order extends Model
     protected $fillable = [
 		'amount_paid_cents',
 		'number_of_forms',
-        'user_id',
-        'created_at',
-        'updated_at',
+    'user_id',
+    'created_at',
+    'updated_at',
+    'order_number',
 	];
 }

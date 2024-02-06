@@ -23,14 +23,16 @@ class addEntryToDatabase implements ShouldQueue
 
     private $userId;
     private $cartData;
+    private $order_id;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($userId, $cartData)
+    public function __construct($userId, $cartData, $order_id)
     {
         $this->userId = $userId;
         $this->cartData = $cartData;
+        $this->order_id = $order_id;
     }
 
     /**
@@ -39,11 +41,11 @@ class addEntryToDatabase implements ShouldQueue
     public function handle(): void
     {
         foreach($this->cartData as $id => $details){
-            $this->createEntryAndPredictions($this-> userId, $details);
+            $this->createEntryAndPredictions($this-> userId, $details, $this->order_id);
         }
     }
 
-    function createEntryAndPredictions($userId, $cartItem){
+    function createEntryAndPredictions($userId, $cartItem, $order_id){
         $champion_hurdle_id = 1;
         $gold_cup_id = 2;
         $champions_cup_id = 4;
@@ -84,6 +86,8 @@ class addEntryToDatabase implements ShouldQueue
         $e -> double_points_3_id = $new_events_array[2];
         $e -> double_points_4_id = $new_events_array[3];
         $e -> is_quick_pick = $cartItem['is_quick_pick'];
+
+        $e -> order_id = $this->order_id;
         $completed_entry = Entry::create( $e->toArray() );
         $new_entry_id = $completed_entry -> id;
 

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property bool $is_active
+ * @property bool $top_10
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 

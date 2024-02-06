@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $competition_id
  * @property int $event_id
- * @property int $selection_id
+ * @property int $competitor_id
  * @property float $start_value
  * @property float $end_value
  * @property Carbon|null $created_at
@@ -33,7 +33,7 @@ class QuickPick extends Model
 	protected $casts = [
 		'competition_id' => 'int',
 		'event_id' => 'int',
-		'selection_id' => 'int',
+		'competitor_id' => 'int',
 		'start_value' => 'float',
 		'end_value' => 'float'
 	];
@@ -41,7 +41,7 @@ class QuickPick extends Model
 	protected $fillable = [
 		'competition_id',
 		'event_id',
-		'selection_id',
+		'competitor_id',
 		'start_value',
 		'end_value'
 	];

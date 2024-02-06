@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Collection|Entry[] $entries
  * @property Collection|Event[] $events
- * @property Collection|QuickPick[] $quick_picks
+ * @property Collection|QuickPick[] $quick_pick
  *
  * @package App\Models
  */
@@ -59,7 +59,7 @@ class Competition extends Model
 					->withTimestamps();
 	}
 
-	public function quick_picks()
+	public function quick_pick()
 	{
 		return $this->hasMany(QuickPick::class);
 	}

@@ -81,6 +81,7 @@ class Entryform extends Component implements Buyable
             $this->wimbledon_ladies_answer = $cartForm['wimbledon_ladies_answer'];
             $this->wimbledon_mens_answer = $cartForm['wimbledon_mens_answer'];
             $this->hurling_answer = $cartForm['hurling_answer'];
+            $this->camogie_answer = $cartForm['camogie_answer'];
             $this->gaelic_answer = $cartForm['gaelic_answer'];
             $this->ladies_gaelic_answer = $cartForm['ladies_gaelic_answer'];
             $this->golf_1_answer = $cartForm['golf_1_answer'];

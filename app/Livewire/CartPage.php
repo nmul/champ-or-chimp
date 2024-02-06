@@ -56,12 +56,12 @@ class CartPage extends Component
     {
         $token = Session::get('cart_token');
         $cart = Cart::where('unique_identifier', $token)->first();
-        if (is_null($cart)) {
-            return redirect()->back()->with('error','Cart is empty');
+        $cartData = null;
+        if ($cart != null) {
+            $cartDataCrypted = Crypt::decrypt($cart->data);
+            $cartData = (array)json_decode($cartDataCrypted);
+            $cart->data = $cartData;
         }
-        $cartDataCrypted = Crypt::decrypt($cart->data);
-        $cartData = (array)json_decode($cartDataCrypted);
-        $cart->data = $cartData;
         return view('livewire.cart-page',[
             'cart'=> $cartData,
         ])->layout('layouts.app');

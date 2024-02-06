@@ -10,8 +10,6 @@ class Autocomplete extends Component
 {
     public $query, $table, $nameCol, $eventId, $fieldName, $results = array(), $entryForm, $doublePoints;
 
-    
-
     public function updatedQuery(){
         if ($this->query != ''){
             $event_ids = DB::table('events_in_competition')

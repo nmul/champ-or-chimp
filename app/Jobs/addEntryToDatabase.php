@@ -3,8 +3,10 @@
 namespace App\Jobs;
 
 use App\Models\Entry;
+use App\Models\Golf;
 use App\Models\MissingField;
 use App\Models\Prediction;
+use App\Models\QuickPick;
 use App\Models\User;
 use App\Order;
 use Illuminate\Bus\Queueable;
@@ -61,13 +63,26 @@ class addEntryToDatabase implements ShouldQueue
         // check if quick pick here. Perform randomization logic
         // assign golfers 1,2,3 and Double points 1,2,3,4
         $e -> user_id = $userId;
-        $e -> golf_1_id = $cartItem['golf_1_answer'];
-        $e -> golf_2_id = $cartItem['golf_2_answer'];
-        $e -> golf_3_id = $cartItem['golf_3_answer'];
-        $e -> double_points_1_id = $cartItem['double_points_1_answer'];
-        $e -> double_points_2_id = $cartItem['double_points_2_answer'];
-        $e -> double_points_3_id = $cartItem['double_points_3_answer'];
-        $e -> double_points_4_id = $cartItem['double_points_4_answer'];
+        $selectedGolfers = array();
+        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_1_answer']);
+        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_2_answer']);
+        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_3_answer']);
+        $returned_golfers = $this->findGolfers($selectedGolfers);
+        $e -> golf_1_id = $returned_golfers[0];
+        $e -> golf_2_id = $returned_golfers[1];
+        $e -> golf_3_id = $returned_golfers[2];
+
+        // handle double points events
+        $events_array = array();
+        $this->addToArrayIfPresent($events_array, $cartItem['double_points_1_answer']);
+        $this->addToArrayIfPresent($events_array, $cartItem['double_points_2_answer']);
+        $this->addToArrayIfPresent($events_array, $cartItem['double_points_3_answer']);
+        $this->addToArrayIfPresent($events_array, $cartItem['double_points_4_answer']);
+        $new_events_array = $this->generateEventsIfNotSelected($events_array);
+        $e -> double_points_1_id = $new_events_array[0];
+        $e -> double_points_2_id = $new_events_array[1];
+        $e -> double_points_3_id = $new_events_array[2];
+        $e -> double_points_4_id = $new_events_array[3];
         $e -> is_quick_pick = $cartItem['is_quick_pick'];
         $completed_entry = Entry::create( $e->toArray() );
         $new_entry_id = $completed_entry -> id;
@@ -78,6 +93,8 @@ class addEntryToDatabase implements ShouldQueue
         if (empty($cartItem['camogie_answer'])) {
             MissingField::create($camogie_prediction->toArray());
             // generate answer and insert into prediction table
+
+            ds("calling find quick pick method for camogie");
             $generatedCamogieId = $this->findQuickPick( $camogie_id );
             $camogie_prediction-> selection_id = $generatedCamogieId;
         } else {
@@ -201,16 +218,87 @@ class addEntryToDatabase implements ShouldQueue
     function findQuickPick($event_id){
         // generate number 999.99 between 0.00 and 100.
         $randomNumber = rand(1,10000) / 100;
-        // get row from quick_picks
-        $answer = DB::table('quick_picks')
+        // get row from quick_pick
+        $answer = QuickPick::all()
         ->where('event_id', $event_id)
         ->where('start_value', '<', $randomNumber)
         ->where('end_value', '>=', $randomNumber)
-        ->first();
+        ->first()
+        ->competitor_id;
         if ($answer == null) {
             return 1;
         } else {
             return $answer;
         }
+    }
+
+    function findGolfers(array $selectedGolfers){
+        if( count($selectedGolfers) == 2 ) {
+            $top_10 = true;
+        } else {
+            $top_10 = false;
+        }
+        
+        while ( count($selectedGolfers) < 3) {
+            //generate random number between 0.01 and 100.00 to use in the select query
+            $randomNumber1 = rand(1,10000) / 100;
+            $randomNumber2 = $randomNumber1;       
+            $row = Golf::all()
+                        ->where("start_value", '<', $randomNumber1)
+                        ->where('end_value', '>=', $randomNumber2)
+                        ->first();
+            // if this is the 1st Golfer no need to check if it has already been selected
+            // just add it to  $selectedGolfers
+            if( count($selectedGolfers)== 0){
+                array_push($selectedGolfers, $row->id);
+                //if selected golfer is top 10
+                if( $row->top_10){
+                    $top_10 = true;
+                }
+                continue;    
+    
+            }else {
+                //check if this record has been selected already if so loop to DO
+                if( in_array($row->id, $selectedGolfers )){
+                    continue;
+                }
+                // if we have 2 selections already and $top_10 is false and this record is not a top 10 Loop to DO
+                if ( count($selectedGolfers) == 2){
+                    if (!$top_10 && ! $row->top_10){
+                        continue;
+                    }
+                }       
+                //Selected golfer is OK to add
+                array_push($selectedGolfers, $row->id);
+
+                if ( $row->top_10 ){
+                    $top_10 = true;
+                }
+            }
+        }
+        return $selectedGolfers;
+    }
+
+    public function addToArrayIfPresent($array, $input){
+        if ($input != null && $input != ''){
+            array_push($array, $input);
+        }
+    }
+
+    public function generateEventsIfNotSelected(array $events){
+        $competition_id = 12;
+        $event_ids = DB::table('events_in_competition')
+                     ->where('competition_id', $competition_id)
+                     ->pluck('event_id')
+                     ->toArray();
+        while (count($events) <= 4){
+            $random_key = array_rand($event_ids);
+            // Access the element at the random key
+            $random_event = $event_ids[$random_key];
+            if (!in_array($random_event, $events)){
+                array_push($events, $random_event);
+            }
+        }
+        return $events;
     }
 }

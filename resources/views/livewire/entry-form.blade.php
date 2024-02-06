@@ -37,9 +37,6 @@
                           Select quick pick to have an entry generated for you!
                         </p>
                         <div class="flex items-center h-5 mt-2 mb-5 pb-5">
-                            <div id="jackpot-image">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" baseProfile="tiny" overflow="inherit" version="1.2" viewBox="0 0 50 50" id="casino"><path d="M49 10.489c.604-.457 1-1.173 1-1.989a2.5 2.5 0 1 0-5 0 2.49 2.49 0 0 0 1 1.989V26h-9v8h10v-.297A3.994 3.994 0 0 0 49.5 30c0-.691-.191-1.332-.5-1.899V10.489zM6 17c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H10s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1H3v6h1s0-2 2-2zm14 0c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H24s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1h-1v6h1s0-2 2-2zM38 7V5H25.88c-.456-2.002-2.239-3.5-4.38-3.5S17.576 2.998 17.12 5H5v2H0v41h44V7h-6zm-22 4h12v14H16V11zM2 11h12v14H2V11zm36 32H5v-7h33v7zm4-18H30V11h12v14zm-8-8c1.021 0 1.73.172 3 0 0 0-4.016 2.666-4.016 6H38s.006-5.554 3-9l-1-1s-2 1-4 0c0 0-2 0-4 1v-1h-1v6h1s0-2 2-2z"></path></svg>
-                            </div>
                             <input id="quick-pick" wire:model="is_quick_pick" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                             <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
                         </div>
@@ -135,11 +132,11 @@
                             </label>
                             @if($ladies_gaelic_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="ladiesGaelic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('ladies_gaelic')->where('id', $ladies_gaelic_answer)->first()->name }}" />
+                                    <input id="ladiesGaelic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('ladiesgaelic')->where('id', $ladies_gaelic_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('ladies_gaelic_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'ladies_gaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer'])
+                                @livewire('autocomplete', ['table' => 'ladiesgaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer'])
                             @endif
                             <br>
                         </div>
@@ -190,11 +187,11 @@
                         </label>
                         @if($champions_cup_answer != '')
                             <div class="flex flex-center">
-                                <input id="championsCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_cup')->where('id', $champions_cup_answer)->first()->name }}" />
+                                <input id="championsCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championscup')->where('id', $champions_cup_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_cup_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'champions_cup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer'])
+                            @livewire('autocomplete', ['table' => 'championscup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer'])
                         @endif
                         <br>
                     </div>
@@ -206,11 +203,11 @@
                         </label>
                         @if($champions_league_answer != '')
                             <div class="flex flex-center">
-                                <input id="championsLeague" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champions_league')->where('id', $champions_league_answer)->first()->name }}" />
+                                <input id="championsLeague" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championsleague')->where('id', $champions_league_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_league_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'champions_league', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer'])
+                            @livewire('autocomplete', ['table' => 'championsleague', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer'])
                         @endif
                         <br>
                     </div>
@@ -223,11 +220,11 @@
                         </label>
                         @if($champion_hurdle_answer != '')
                             <div class="flex flex-center">
-                                <input id="championHurdle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('champion_hurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
+                                <input id="championHurdle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championhurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champion_hurdle_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'champion_hurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer'])
+                            @livewire('autocomplete', ['table' => 'championhurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer'])
                         @endif
                         <br>
                     </div>
@@ -238,11 +235,11 @@
                         </label>
                         @if($gold_cup_answer != '')
                             <div class="flex flex-center">
-                                <input id="goldCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('gold_cup')->where('id', $gold_cup_answer)->first()->name }}" />
+                                <input id="goldCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('goldcup')->where('id', $gold_cup_answer)->first()->name }}" />
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gold_cup_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'gold_cup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer'])
+                            @livewire('autocomplete', ['table' => 'goldcup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer'])
                         @endif
                         <br>
                     </div>
@@ -256,11 +253,11 @@
                             </label>
                             @if($wimbledon_ladies_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_ladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
+                                    <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennisladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_ladies_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'wibmledon_ladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer'])
+                                @livewire('autocomplete', ['table' => 'tennisladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer'])
                             @endif
                             <br>
                         </div>
@@ -272,11 +269,11 @@
                             </label>
                             @if($wimbledon_mens_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="wimbledonMens" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('wibmledon_mens')->where('id', $wimbledon_mens_answer)->first()->name }}" />
+                                    <input id="wimbledonMens" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennismen')->where('id', $wimbledon_mens_answer)->first()->name }}" />
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_mens_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'wibmledon_mens', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer'])
+                                @livewire('autocomplete', ['table' => 'tennismen', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer'])
                             @endif
                             <br>
                         </div>

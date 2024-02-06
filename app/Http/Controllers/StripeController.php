@@ -60,6 +60,7 @@ class StripeController extends BaseController
             $cartData = Cart::getCartItemsAsArrayFromToken($cart);
             dispatch(new addEntryToDatabase($cart->user_id, $cartData));
             error_log("run job ");
+            $cart -> delete();
             http_response_code(200);
         } elseif ($event->type == "payment_intent.payment_failed") {
             $intent = $event->data->object;

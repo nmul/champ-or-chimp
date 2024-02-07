@@ -319,7 +319,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_1_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer'])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer', 'golf' => true, 'golfAnswers' => $golfAnswers], key($this->now()))
                             @endif
                             <br>
                         </div>
@@ -334,7 +334,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_2_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer'])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer', 'golf' => true, 'golfAnswers' => $golfAnswers], key($this->now()))
                             @endif
                             <br>
                         </div>
@@ -349,7 +349,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_3_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer'])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer', 'golf' => true , 'golfAnswers' => $golfAnswers], key($this->now()))
                             @endif
                             <br>
                         </div>
@@ -395,7 +395,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_1_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_1_answer', 'doublePoints' => true])
+                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_1_answer', 'doublePoints' => true, 'doublePointsAnswers' => $doublePointsAnswers])
                             @endif
                             <br>
                         </div>
@@ -410,7 +410,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_2_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_2_answer', 'doublePoints' => true])
+                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_2_answer', 'doublePoints' => true, 'doublePointsAnswers' => $doublePointsAnswers])
                             @endif
                             <br>
                         </div>
@@ -425,7 +425,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_3_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_3_answer', 'doublePoints' => true ])
+                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_3_answer', 'doublePoints' => true, 'doublePointsAnswers' => $doublePointsAnswers ])
                             @endif
                             <br>
                         </div>
@@ -440,7 +440,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('double_points_4_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_4_answer', 'doublePoints' => true])
+                                @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_4_answer', 'doublePoints' => true, 'doublePointsAnswers' => $doublePointsAnswers])
                             @endif
                             <br>
                         </div>
@@ -463,9 +463,6 @@
                     @endif
             </form>
         </div>
-
-        
-
     <hr>
 
     @script
@@ -496,8 +493,18 @@
         });
 
         $(document).on('click', '.custom-next-button', function () {
-            let currPage = @this.get('currentPage');
-            @this.set('currentPage', currPage + 1);
+            let valid = true;
+            const autocompleteFields = document.getElementsByClassName('autocomplete-field');
+            for (let i = 0; i < autocompleteFields.length; i++){
+                if (autocompleteFields[i].value !== ''){
+                    $wire.autocompleteNotEmpty();
+                    valid = false;
+                }
+            }
+            if (valid){
+                let currPage = @this.get('currentPage');
+                @this.set('currentPage', currPage + 1);
+            }
         });
 
         $(document).on('click', '.custom-back-button', function () {
@@ -531,8 +538,7 @@
             } else {
                 $('#landing-page-next-button').html("Next");
             }
-        })
-
+        });
     </script>
     @endscript
 </div>

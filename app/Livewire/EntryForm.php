@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Livewire\LOG;
 use App\Models\AnswerEvent;
 use App\Models\ChampionsLeague;
 use App\Models\Competition;
@@ -26,10 +25,12 @@ use App\Models\WibmledonMen;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -40,26 +41,51 @@ class Entryform extends Component implements Buyable
     public $maxPage = 4;
 
     public $enteringForSomeone = false;
+
+    #[Validate('nullable|min:3', onUpdate: false)]
     public $firstName = '';
+    #[Validate('nullable|min:3', onUpdate: false)]
     public $lastName = '';
+    #[Validate('nullable|email', onUpdate: false)]
     public $email = '';
+
+    #[Validate('nullable|exists:championhurdle,id', onUpdate: false)]
     public $champion_hurdle_answer = '';
+    #[Validate('nullable|exists:goldcup,id', onUpdate: false)]
     public $gold_cup_answer = '';
+    #[Validate('nullable|exists:championscup,id', onUpdate: false)]
     public $champions_cup_answer = '';
+    #[Validate('nullable|exists:championsleague,id', onUpdate: false)]
     public $champions_league_answer = '';
+    #[Validate('nullable|exists:tennisladies,id', onUpdate: false)]
     public $wimbledon_ladies_answer = '';
+    #[Validate('nullable|exists:tennismen,id', onUpdate: false)]
     public $wimbledon_mens_answer = '';
+    #[Validate('nullable|exists:hurling,id', onUpdate: false)]
     public $hurling_answer = '';
+    #[Validate('nullable|exists:gaelic,id', onUpdate: false)]
     public $gaelic_answer = '';
+    #[Validate('nullable|exists:ladiesgaelic,id', onUpdate: false)]
     public $ladies_gaelic_answer = '';
+    #[Validate('nullable|exists:camogie,id', onUpdate: false)]
     public $camogie_answer = '';
+    #[Validate('nullable|exists:golf,id', onUpdate: false)]
     public $golf_1_answer = '';
+    #[Validate('nullable|exists:golf,id', onUpdate: false)]
     public $golf_2_answer = '';
+    #[Validate('nullable|exists:golf,id', onUpdate: false)]
     public $golf_3_answer = '';
+    #[Validate('nullable|exists:event,id', onUpdate: false)]
     public $double_points_1_answer = '';
+    #[Validate('nullable|exists:event,id', onUpdate: false)]
     public $double_points_2_answer = '';
+    #[Validate('nullable|exists:event,id', onUpdate: false)]
     public $double_points_3_answer = '';
+    #[Validate('nullable|exists:event,id', onUpdate: false)]
     public $double_points_4_answer = '';
+
+    public $golfAnswers = [];
+    public $doublePointsAnswers = [];
     public $is_quick_pick = false;
     
 
@@ -105,11 +131,33 @@ class Entryform extends Component implements Buyable
         $this->$fieldName = $answerId;
     }
 
+    #[On('golfersUpdated')]
+    public function dispatchGolfersUpdated($answerId){
+        $newGolfers = [];
+        array_push($newGolfers, $this->golf_1_answer);
+        array_push($newGolfers, $this->golf_2_answer);
+        array_push($newGolfers, $this->golf_3_answer);
+
+        $this->golfAnswers = $newGolfers;
+    }
+
+    #[On('doublePointsUpdated')]
+    public function dispatchDoublePointsUpdated($eventId){
+        $newDoublePoints = [];
+        array_push($newDoublePoints, $this->double_points_1_answer);
+        array_push($newDoublePoints, $this->double_points_2_answer);
+        array_push($newDoublePoints, $this->double_points_3_answer);
+        array_push($newDoublePoints, $this->double_points_3_answer);
+        $this->doublePointsAnswers = $newDoublePoints;
+    }
+
     public function setFieldAsNull(string $fieldName){
         $this->$fieldName = null;
     }
 
     public function addToCart(Request $request){
+        $validated = $this->validate();
+
         $user = Auth::user();
         $formFirst = $this->firstName == '' ? $user->first_name : $this->firstName;
         $formLast = $this->lastName == '' ? $user->last_name : $this->lastName;
@@ -196,7 +244,9 @@ class Entryform extends Component implements Buyable
         return 10;
     }
 
-
+    public function autocompleteNotEmpty(){
+        $this->dispatch('validateAutoComplete');
+    }
 
     public function render()
     {
@@ -209,10 +259,27 @@ class Entryform extends Component implements Buyable
         $events = DB::table('Event')
                   ->whereIn('id', $event_ids)
                   ->get();
+
+        $golfAnswers = array(); 
+        $doublePointsAnswers = array();
+        
+        
         return view('livewire.entry-form', [
             'competition' => $competition,
             'event_ids'=> $event_ids,
             'events' => $events,
+            'doublePointsAnswers' => $doublePointsAnswers,
+            'golfAnswers' => $golfAnswers,
         ])->layout('layouts.app');
+    }
+
+    public function now(){
+        return (string)time();
+    }
+
+    public function addToArrayIfPresent($array, $input){
+        if ($input != null && $input != ''){
+            array_push($array, $input);
+        }
     }
 }

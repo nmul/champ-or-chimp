@@ -4,7 +4,7 @@
         <div class="container max-w-md mx-auto">
             <div id="order-container">
 
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 mx-5 my-3">
 
                     <div>Order Number</div>
                     <div>{{ $latestOrder -> order_number }}</div>

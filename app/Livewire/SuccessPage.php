@@ -15,16 +15,16 @@ use Livewire\Component;
 class SuccessPage extends Component
 {
 
-    public function paymentMade(){
-
-    }
-
     public function render()
     {
         $orders = DB::table("orders")
                       ->where("user_id", Auth::user()->id);
         $latestOrder = $orders->first();
         // can also check here to make sure that Order number isn't already in the database
-        return view('livewire.success-page', ["orders" => $orders, "latestOrder" => $latestOrder, "firstName" => Auth::user()->first_name])->layout('layouts.app');
+        return view('livewire.success-page', 
+                    ["orders" => $orders, 
+                    "latestOrder" => $latestOrder, 
+                    "firstName" => Auth::user()->first_name])
+                    ->layout('layouts.app');
     }
 }

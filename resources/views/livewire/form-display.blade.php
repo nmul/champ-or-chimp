@@ -1,15 +1,15 @@
 <div>
-    <div class="order-summary-table grid" id="{{ $details->id }}">
-        
-        <h3 class="text-center"> Entry Form Details {{ $loopIteration }} of {{ $total }} </h1>
-        <div class="grid grid-cols-2 mx-5 my-5">
-           <div>Entrant First Name:</div>
+    <div class="order-summary-table grid mt-3">
+
+        <h3 class="text-center"> Entry Form Details <i>{{ $loopIteration }}</i> of <i>{{ $total }}</i> </h1>
+        <div class="grid grid-cols-2 mx-5 my-1">
+           <div>Entrant First Name: </div>
            <div>{{ $details -> firstName}}</div>
-           <div>Entrant Last Name:</div>
+           <div>Entrant Last Name: </div>
            <div>{{ $details -> lastName }}</div>
-           <div>Entrant Email</div>
+           <div>Entrant Email: </div>
            <div>{{ $details -> email }}</div>
-           <div>Is Quick Pick?</div>
+           <div>Is Quick Pick? </div>
            <div>
                 @if ($details -> is_quick_pick)
                     <div aria-label="is quick pick"><i class="fa-solid fa-check"></i></div>
@@ -76,14 +76,13 @@
             @endif
 
             <div class="col-span-2 flex justify-center mt-2 xs:mt-0">
-                <button type="button" wire:click="editEntryForm('{{ $details->id }}')" class="mx-3 px-4 h-10 text-base font-medium text-white bg-blue-800 rounded-s hover:bg-gray-900">
+                <button type="button" wire:click="editEntryForm('{{ $details->id }}')" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900">
                     Edit
                 </button>
-                <button type="button" wire:click="deleteEntryForm('{{ $details->id }}')" class="mx-3 px-4 h-10 text-base font-medium text-white bg-red-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
+                <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900" x-on:click="$wire.deleteEntryForm('{{ $details->id }}')" @click="showDeleteModal = true;">
                     Delete
                 </button>
             </div>
-            <div></div>
         </div>
     </div>
 </div>

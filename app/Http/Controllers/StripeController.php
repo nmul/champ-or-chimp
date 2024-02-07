@@ -11,6 +11,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\Entry;
@@ -57,9 +58,12 @@ class StripeController extends BaseController
         if ($event->type == "payment_intent.succeeded") {
             $intent = $event->data->object;
             $token = $intent->metadata['cart_token'];
+            Log::info('token is '. $token);
             $order_number = $intent->metadata['order_number'];
+            Log::info('order number is '. $order_number);
             $cart = Cart::where('unique_identifier', $token)->first();
             $cartData = Cart::getCartItemsAsArrayFromToken($cart);
+            Log::info(json_encode($cartData));
             dispatch(new addEntryToDatabase($cart->user_id, $cartData, $order_number));
             $order = new Order();
             $numberOfForms = $cart->number_of_forms;

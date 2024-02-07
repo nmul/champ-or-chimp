@@ -31,25 +31,7 @@ class FormDisplay extends Component
 
     public function deleteEntryForm(String $entryFormId, Request $request)
     {
-        $token = $request->session()->get('cart_token');
-        $cart = Cart::where('unique_identifier', $token)->first();
-        $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
-        unset($cartItems[$entryFormId]);
-        $cart->data = $cartItems;
-        $cart_as_json = json_encode($cart->data);
-        $encrypted_cart = Crypt::encrypt($cart_as_json);
-        $number_of_forms = count($cartItems);
-        $current_cost = Entry::calculate_price($number_of_forms);
-        $cart = Cart::updateOrCreate(
-            ['unique_identifier' => $token],
-            [
-                'data' => $encrypted_cart,
-                'user_id' => Auth::id(),
-                'number_of_forms' => $number_of_forms,
-                'current_cost' => $current_cost,
-            ]
-        );
-        $this->redirect('cart');
+        $this->dispatch('deleteEntry', $entryFormId);
     }
 
     public function render()

@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\Cart;
 use App\Models\Entry;
@@ -13,6 +15,11 @@ use App\Models\Entry;
 
 class CartPage extends Component
 {
+    public $selectedEntryId = null;
+
+    protected $listeners = [
+        'entrySelectedForDeletion' => 'setSelectedEntryId',
+    ];
 
     public function checkout(Request $request){
         \Stripe\Stripe::setApiKey(config("stripe.sk"));
@@ -22,7 +29,6 @@ class CartPage extends Component
         if (is_null($cart)) {
             return redirect()->back()->with('error','Cart is empty');
         }
-        $cartData = Cart::getCartItemsAsArrayFromToken($cart);
         $count = $cart -> number_of_forms;
         $plur = (string)$count . " Champ or Chimp 2024 Entry Forms";
         $singular = "1 Champ or Chimp 2024 Entry Form";
@@ -54,6 +60,37 @@ class CartPage extends Component
             ],
         ]);
         return redirect()->away($session->url);
+    }
+
+    #[On('deleteEntry')]
+    public function setDeleteId($entryFormId){
+        $this->selectedEntryId = $entryFormId;
+    }
+
+    public function deleteEntryForm()
+    {
+        if ($this->selectedEntryId == null){
+            return redirect()->back()->with('error','Selected entry is null');
+        }
+        $token = Session()->get('cart_token');
+        $cart = Cart::where('unique_identifier', $token)->first();
+        $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
+        unset($cartItems[$this->selectedEntryId]);
+        $cart->data = $cartItems;
+        $cart_as_json = json_encode($cart->data);
+        $encrypted_cart = Crypt::encrypt($cart_as_json);
+        $number_of_forms = count($cartItems);
+        $current_cost = Entry::calculate_price($number_of_forms);
+        $cart = Cart::updateOrCreate(
+            ['unique_identifier' => $token],
+            [
+                'data' => $encrypted_cart,
+                'user_id' => Auth::id(),
+                'number_of_forms' => $number_of_forms,
+                'current_cost' => $current_cost,
+            ]
+        );
+        $this->redirect('cart');
     }
 
     public function render()

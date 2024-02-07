@@ -97,8 +97,6 @@ class addEntryToDatabase implements ShouldQueue
         if (empty($cartItem['camogie_answer'])) {
             MissingField::create($camogie_prediction->toArray());
             // generate answer and insert into prediction table
-
-            ds("calling find quick pick method for camogie");
             $generatedCamogieId = $this->findQuickPick( $camogie_id );
             $camogie_prediction-> selection_id = $generatedCamogieId;
         } else {

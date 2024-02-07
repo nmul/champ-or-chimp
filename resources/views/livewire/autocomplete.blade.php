@@ -1,5 +1,8 @@
 <div class="w-80">
-    <input wire:model.live="query" id="{{ $this->table }}" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" placeholder="Select your winner!" />
+    <input wire:model.live="query" id="{{ $this->table }}" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 autocomplete-field" placeholder="Select your winner!" />
+    @error('query')
+        <span class="text-md text-red-500">Click an option in the list!</span>
+    @enderror
     @if($results)
         <div class="relative">
             <div class="absolute w-64">

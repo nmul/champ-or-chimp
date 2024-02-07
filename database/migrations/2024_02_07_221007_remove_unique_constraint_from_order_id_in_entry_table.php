@@ -9,24 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('entry', function (Blueprint $table) {
-            // Change the data type of order_id to VARCHAR(255)
-            $table->string('order_id', 255)->change();
-    
-            // If existing data is present, consider migrating it to UUIDs:
-            // $table->uuid('order_id')->unique()->change(); // Replace with your migration logic
+            // Remove the unique constraint on the order_id column
+            $table->dropUnique('entry_order_id_unique'); // Assuming this is the constraint name
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('entry', function (Blueprint $table) {
-            $table->char('order_id', 36)->change();
+            // Re-add the unique constraint if needed
+            $table->unique('order_id');
         });
     }
 };

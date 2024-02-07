@@ -56,6 +56,7 @@ class StripeController extends BaseController
         }
 
         if ($event->type == "payment_intent.succeeded") {
+            Log::info("first line of payment intent succceeded shitttttt");
             $intent = $event->data->object;
             $token = $intent->metadata['cart_token'];
             Log::info('token is '. $token);

@@ -85,7 +85,7 @@
 
               <div class="col-span-2 flex justify-center mt-2 xs:mt-0 mb-3">
                 <!-- Authentication -->
-                <button wire:click="logout" class="text-start">
+                <button wire:click="logout" class="text-start text-black">
                   <x-responsive-nav-link>
                       {{ __('Log Out') }}
                   </x-responsive-nav-link>

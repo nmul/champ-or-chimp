@@ -2,30 +2,27 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
-use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Mail;
 class OrderConfirmationEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    private $email;
-    private $user;
     private $order;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($email, $user, $order)
+    public function __construct($order_id)
     {
-        $this->email = $email;
-        $this->user = $user;
-        $this->order = $order;
+        $this->order = DB::table("orders")->where("order_number", $order_id)->first();
     }
 
     /**
@@ -33,6 +30,14 @@ class OrderConfirmationEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new OrderConfirmationEmail($this->email));
+        error_log("in order confirmation job");
+        Log::info($this->order->user_id);
+        $user_id = $this->order->user_id;
+        $user = DB::table("users")->where("id", )->first();
+        $userEmail = $user->email;
+        error_log("user email is " . $userEmail);
+        $subject = "Champ or Chimp Order Confirmation Number";
+        $body = "Hi, " . $user->first_name . "\nThanks for your order!\n\nYour order confirmation number is: " . $this->order->order_number. ".\nBest of luck in the competition!\nKind regards,\nChamp Or Chimp Team";
+        Mail::to($userEmail)->send(new OrderConfirmationMail($subject, $body));
     }
 }

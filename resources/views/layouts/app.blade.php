@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Champ or Chimp') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,6 +13,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap');
         </style>
+        <link rel="shortcut icon" type="image/jpg" href="{{ URL('/images/favicon.ico') }}"/>
             
 
         <!-- Scripts -->

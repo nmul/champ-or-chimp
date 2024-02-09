@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Events\PaymentReceived;
 
+use App\Jobs\OrderConfirmationEmailJob;
+use App\Mail\OrderConfirmationMail;
+use App\Mail\TestMail;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -12,6 +15,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\Entry;
@@ -56,7 +60,7 @@ class StripeController extends BaseController
         }
 
         if ($event->type == "payment_intent.succeeded") {
-            Log::info("first line of payment intent succceeded shitttttt");
+            // dont forget to fire up stripe. in live save web hook signing secret to env
             $intent = $event->data->object;
             $token = $intent->metadata['cart_token'];
             Log::info('token is '. $token);
@@ -65,7 +69,6 @@ class StripeController extends BaseController
             $cart = Cart::where('unique_identifier', $token)->first();
             $cartData = Cart::getCartItemsAsArrayFromToken($cart);
             Log::info(json_encode($cartData));
-            dispatch(new addEntryToDatabase($cart->user_id, $cartData, $order_number));
             $order = new Order();
             $numberOfForms = $cart->number_of_forms;
             $order-> user_id = $cart -> user_id;
@@ -74,6 +77,10 @@ class StripeController extends BaseController
             $order->number_of_forms = $numberOfForms;
             $order-> order_number = $order_number;
             Order::create($order->toArray());
+            dispatch(new addEntryToDatabase($cart->user_id, $cartData, $order_number));
+            error_log("in order confirmation job");
+            Log::info($order->user_id);
+            dispatch(new OrderConfirmationEmailJob($order_number));
             $cart -> delete();
             http_response_code(200);
         } elseif ($event->type == "payment_intent.payment_failed") {

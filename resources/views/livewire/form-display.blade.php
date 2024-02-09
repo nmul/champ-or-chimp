@@ -76,10 +76,10 @@
             @endif
 
             <div class="col-span-2 flex justify-center mt-2 xs:mt-0">
-                <button type="button" wire:click="editEntryForm('{{ $details->id }}')" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900">
+                <button type="button" wire:click="editEntryForm('{{ $details->id }}')" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
                     Edit
                 </button>
-                <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900" x-on:click="$wire.deleteEntryForm('{{ $details->id }}')" @click="showDeleteModal = true;">
+                <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white" x-on:click="$wire.deleteEntryForm('{{ $details->id }}')" @click="showDeleteModal = true;">
                     Delete
                 </button>
             </div>

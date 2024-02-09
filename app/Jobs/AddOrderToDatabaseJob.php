@@ -27,9 +27,6 @@ class AddOrderToDatabaseJob implements ShouldQueue
     {
         $this->cart = $cart;
         $this->order_number = $order_number;
-        Log::info("in construct method");
-        Log::info($cart);
-        Log::info($order_number);
     }
 
     /**

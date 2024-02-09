@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Mail\TestMail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;

@@ -19,11 +19,11 @@ new class extends Component
 
         tap(Auth::user(), $logout(...))->delete();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/register', navigate: true);
     }
 }; ?>
 
-<section class="space-y-6">
+<section class="space-y-6 custom-bg-color p-5">
     <header>
         <h2 class="text-lg font-medium text-gray-900 ">
             {{ __('Delete Account') }}

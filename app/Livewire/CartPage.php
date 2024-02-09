@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Actions\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -91,6 +92,16 @@ class CartPage extends Component
             ]
         );
         $this->redirect('cart');
+    }
+
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
+    {
+        $logout();
+
+        $this->redirect('/register', navigate: true);
     }
 
     public function render()

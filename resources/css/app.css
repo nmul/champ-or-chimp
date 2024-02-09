@@ -96,6 +96,19 @@
     background-color: #F1EEDF;
 }
 
+.custom-bg-orange {
+    background-color: #FEC051;
+    color: black;
+    --tw-border-opacity: 1;
+    border-color: #F48142;
+    border-radius: 15px;
+}
+
+.events-table-p {
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
 .custom-orange-text {
     color: #F48142;
 }
@@ -247,4 +260,39 @@
 #landingPageBody {
     height: 100%;
     width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .custom-alert-box-large {
+        width: 250px;
+        height: 280px;
+        border-radius: 15px;
+        margin-top: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        position: relative;
+        background-color: #FEC051;
+        color: black;
+        --tw-border-opacity: 1;
+        border-color: #F48142;
+    }
+    
+    .custom-alert-box-large h1 {
+        font-size: 30px;
+        margin-top: 60px;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+    
+    .custom-alert-box-large img{
+        height: 140px;
+        width: 140px;
+        border: 2px solid #000;
+        border-radius: 50%;
+        position: absolute;
+        top: -80px;
+        right: 20px;
+    }
 }

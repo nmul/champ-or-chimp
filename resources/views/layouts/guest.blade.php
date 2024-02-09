@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             
     </head>
-    <body class="text-gray-900 antialiased" style="font-family: 'Inter', sans-serif;">
+    <body class="text-gray-900 antialiased">
         <div class="">
             <div>
                 {{ $slot }}

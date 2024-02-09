@@ -69,7 +69,7 @@ new class extends Component
     }
 }; ?>
 
-<section>
+<section class="custom-bg-color p-5">
     <header>
         <h2 class="text-lg font-medium text-gray-900 ">
             {{ __('Profile Information') }}

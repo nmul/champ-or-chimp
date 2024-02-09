@@ -2,9 +2,28 @@
 
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
+use App\Models\Cart;
 
 new class extends Component
 {
+    public $cartCost;
+
+    public function mount(Request $request): void
+    {
+        $cart_is_present = true;
+        if (Auth::user()){
+            $token = Session::get('cart_token');
+            $cart = Cart::where('unique_identifier', $token)->first();
+            if (is_null($cart)) {
+                $cart_is_present = false;
+            }
+            if ($cart_is_present){
+                $this->cartCost = $cart->current_cost;
+            }    
+        }
+    }
+
+
     /**
      * Log the current user out of the application.
      */
@@ -12,7 +31,7 @@ new class extends Component
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/register', navigate: true);
     }
 }; ?>
 
@@ -27,14 +46,16 @@ new class extends Component
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
             </div>
+
+
+            <div class="shrink-0 flex items-center border-sm text-xl">
+                <a href="{{ URL('/cart') }}" wire:navigate>
+                    <i class="fa-solid fa-cart-shopping"></i>Total €{{ number_format($this->cartCost / 100, 2) }}
+                </a>
+            </div>
+
+            
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

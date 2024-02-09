@@ -14,11 +14,11 @@
                     <div>{{ $latestOrder -> number_of_forms }}</div>
 
                     <div>Total Cost of Order</div>
-                    <div>€{{ ($latestOrder -> amount_paid_cents) / 100 }}</div>
+                    <div>€{{  number_format($latestOrder -> amount_paid_cents / 100, 2) }}</div>
                 </div>
             </div>
         </div>
     @else
-        Cyka Blyat
+        
     @endif
 </div>

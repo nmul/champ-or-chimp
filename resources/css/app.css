@@ -2,14 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-.low-opacity-bg-image {
 
+.landingPageHero {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Inter', sans-serif;
+}
+
+#flyShannonLogo {
+    max-width: 300px;
+}
+
+.landing-page-box-test {
+    position: relative;
+    height: 500px;
+    width: 350px;
+    border: black;
+}
+
+.landing-page-box-test img {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -120px;
+    right: -40px;
+}
+
+.landing-page-box-test p {
+    margin-top: 150px;
+}
+
+.landing-page-box {
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+    position: relative;
+    color: black;
+    --tw-border-opacity: 1;
+}
+
+.landing-page-box h1 {
+    font-size: 60px;
+    margin-top: 80px;
+    line-height: 1;
+}
+
+.landing-page-box img{
+    height: 100px;
+    width: 100px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -120px;
+    left: 40px;
+}
+
+.low-opacity-bg-image {
     background-repeat: no-repeat; 
     background-position: center; 
     background-attachment: fixed;
     background-size: cover;
     position: relative;
     isolation: isolate;
+    min-height: 800px;
 }
 
 .low-opacity-bg-image::after {
@@ -18,7 +81,7 @@
     background: grey;
     inset: 0;
     z-index: -1;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .formRow {
@@ -41,6 +104,11 @@
     color: #CB3057;
 }
 
+.custom-bg-red {
+    background: rgb(244,129,66);
+    background: radial-gradient(circle, rgba(244,129,66,1) 0%, rgba(244,90,128,1) 100%);
+}
+
 .custom-alert-box {
     width: 330px;
     height: 200px;
@@ -56,6 +124,40 @@
     --tw-border-opacity: 1;
     border-color: #F48142;
 }
+
+.custom-alert-box-large {
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    margin-top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+    position: relative;
+    background-color: #FEC051;
+    color: black;
+    --tw-border-opacity: 1;
+    border-color: #F48142;
+}
+
+.custom-alert-box-large h1 {
+    font-size: 40px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.custom-alert-box-large img{
+    height: 220px;
+    width: 220px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -120px;
+    right: 20px;
+}
+
 
 .custom-alert-box h1 {
     font-size: 20px;
@@ -107,6 +209,13 @@
     left: 20px;
 }
 
+.custom-alert-box #gorilla-coach-img {
+    height: 120px;
+    width: 120px;
+    top: -50px;
+    left: 20px;
+}
+
 .custom-alert-box p {
     font-size: 16px;
     margin-top: 20px;
@@ -133,4 +242,9 @@
     display: inline-block;
     height: 50px;
     width: 50px;
+}
+
+#landingPageBody {
+    height: 100%;
+    width: 100%;
 }

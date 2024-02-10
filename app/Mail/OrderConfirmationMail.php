@@ -13,15 +13,17 @@ class OrderConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject, $body;
+    public $subject, $body, $order, $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $body)
+    public function __construct($subject, $body, $order, $user)
     {
         $this->subject = $subject;
         $this->body = $body;
+        $this->order = $order;
+        $this->user = $user;
     }
 
     /**

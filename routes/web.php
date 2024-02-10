@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\InfoPage;
 use App\Livewire\LandingPage;
 use App\Livewire\StripeComponent;
 use App\Livewire\SuccessPage;
@@ -34,7 +35,7 @@ Route::get('/entry/{id}', Entryform::class)->middleware(['auth'])->name('entryfo
 Route::post('checkout', CartPage::class)->middleware(['auth'])->name('checkout');
 Route::get('/cart', CartPage::class)->middleware(['auth'])->name('cart');
 Route::get('/success-page', SuccessPage::class)->name('success-page');
-
+Route::get('/info', InfoPage::class)->name('info');
 
 Route::get('/welcome', LandingPage::class)->name('welcome');
 

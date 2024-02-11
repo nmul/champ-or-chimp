@@ -42,22 +42,11 @@
                         </div>
                     </div>
 
-                    {{-- <div id="events-in-competition mt-10">
-                        <h1 class="text-lg font-medium mb-3 text-center">2024 Champ Or Chimp Events:</h1>
-                        <div class="mb-3 orange-border grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
-                            @foreach ($events as $event)
-                                <div wire:key="{{ $event->id }}" class="{{ $loop->even ? 'eggshell-bg' : 'blue-bg' }} w-full p-2"> 
-                                    <p class="mx-auto">{{ $event->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div> --}}
-
                     <div class="flex flex-col items-center pb-10">
                     <!-- Buttons -->
                         <div class="inline-flex mt-2 xs:mt-0 mb-3">
                             <button type="button" id="landing-page-cancel-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900">
-                                Prev
+                                <a href="{{ URL('info') }}" wire:navigate>More Info</a>
                             </button>
                             <button type="button" id="landing-page-next-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
                                 Next

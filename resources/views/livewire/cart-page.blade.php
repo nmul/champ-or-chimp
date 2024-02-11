@@ -56,7 +56,7 @@
                   <p class="mt-4 text-sm text-gray-500">Are you sure you want to delete this entry?</p>
                   <div class="mt-5 flex justify-end space-x-2">
                       <div x-show="showDeleteModal" x-on:close-modal.window="showDeleteModal = false">
-                        <button class="mx-3 px-4 h-10 text-base font-medium text-white bg-red-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900" x-on:click="$wire.deleteEntryForm('{{ $details->id }}')">Confirm Delete</button>
+                        <button class="mx-3 px-4 h-10 text-base font-medium text-white custom-bg-red-color border-0 border-s border-gray-700 rounded-e hover:bg-gray-900" x-on:click="$wire.deleteEntryForm('{{ $details->id }}')">Confirm Delete</button>
                       </div>
 
                       <button x-show="showDeleteModal" x-on:close-modal.window="showDeleteModal = false" x-on:click="showDeleteModal = false">

@@ -537,4 +537,36 @@ openFaq8: false,
             </table>
         </div>
     </section>
+
+    <section id="HeroButton">
+        <div class="flex flex-col items-center pb-10">
+            <!-- Help text -->
+            <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Think you're ready?</h1>
+
+            @if (auth()->guest())
+                <p class="p-3 text-xl">Login or create an account to submit an entry form!</p>
+                <!-- Buttons -->
+                <div class="inline-flex mt-2 xs:mt-0">
+                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
+                        <a href="{{ URL('register') }}">Register</a>
+                    </button>
+                    
+                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
+                        <a href="{{ URL('login') }}">Login</a>
+                    </button>
+                </div>
+            @else
+                <p class="p-3 text-xl">You're logged in, {{Auth::user()->first_name}}, submit a form here!</p>
+                <!-- Buttons -->
+                <div class="inline-flex mt-2 xs:mt-0">
+                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white">
+                        <a href="{{ URL('entry') }}" wire:navigate>Entry Form</a>
+                    </button>
+                </div>
+            @endif
+
+
+            
+        </div>
+    </section>
 </div>

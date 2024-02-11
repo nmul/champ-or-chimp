@@ -94,6 +94,8 @@ class Entryform extends Component implements Buyable
         $token = Session::get('cart_token');
         $cart = Cart::where('unique_identifier', $token)->first();
         $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
+        $this->currentPage = 0;
+        $this->maxPage = 4;
         if (isset($id) && $cartItems != null && $cartItems[$id] != null){
             $cartForm = $cartItems[$id];
             $this->id = $id;

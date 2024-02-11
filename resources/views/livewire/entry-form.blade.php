@@ -14,7 +14,7 @@
                         <label for="enteringForSomeone" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>
                     </div>
 
-                    <div id="other-entry-div">
+                    <div id="other-entry-div" class="hidden">
                         <div class="mb-5">
                             <label for="firstName" class="block mb-2 text-md font-medium text-gray-900">Entrant's First Name</label>
                             <input wire:model="firstName" type="text" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="First Name">
@@ -46,7 +46,7 @@
                     <!-- Buttons -->
                         <div class="inline-flex mt-2 xs:mt-0 mb-3">
                             <button type="button" id="landing-page-cancel-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900">
-                                <a href="{{ URL('info') }}" wire:navigate>More Info</a>
+                                <a href="{{ URL('info') }}">More Info</a>
                             </button>
                             <button type="button" id="landing-page-next-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
                                 Next
@@ -58,7 +58,7 @@
 
                 @if($currentPage == 1)
                 <div id="irish-competition" class="mx-auto">
-                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Irish Sporting Events</h1>
+                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text text-center">Irish Sporting Events</h1>
 
                     <div class="grid md:grid-cols-2 gap-2">
 
@@ -487,8 +487,8 @@
                 // work on showing a modal here tomorrow
                 $wire.addToCart();
             } else {
-                let currPage = @this.get('currentPage');
-                @this.set('currentPage', currPage + 1);
+                let currPage = $wire.$get('currentPage')
+                $wire.$set('currentPage', currPage + 1);
             }
         });
 
@@ -502,14 +502,14 @@
                 }
             }
             if (valid){
-                let currPage = @this.get('currentPage');
-                @this.set('currentPage', currPage + 1);
+                let currPage = $wire.$get('currentPage');
+                $wire.$set('currentPage', currPage + 1);
             }
         });
 
         $(document).on('click', '.custom-back-button', function () {
-            let currPage = @this.get('currentPage');
-            @this.set('currentPage', currPage - 1);
+            let currPage = $wire.$get('currentPage');
+            $wire.$set('currentPage', currPage - 1);
         });
 
         $(document).on('change', '#enteringForSomeone', function() {

@@ -560,7 +560,7 @@ openFaq8: false,
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0">
                     <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white">
-                        <a href="{{ URL('entry') }}" wire:navigate>Entry Form</a>
+                        <a href="{{ URL('entry') }}">Entry Form</a>
                     </button>
                 </div>
             @endif

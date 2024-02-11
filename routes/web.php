@@ -2,6 +2,7 @@
 
 use App\Livewire\InfoPage;
 use App\Livewire\LandingPage;
+use App\Livewire\PreviousEntries;
 use App\Livewire\StripeComponent;
 use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Route;

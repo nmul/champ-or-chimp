@@ -35,7 +35,7 @@ new #[Layout('layouts.guest')] class extends Component
     {
         $logout();
 
-        $this->redirect('/register', navigate: true);
+        $this->redirect('/register');
     }
 }; ?>
 

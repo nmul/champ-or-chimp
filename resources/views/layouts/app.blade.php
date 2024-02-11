@@ -15,12 +15,6 @@
         </style>
         <link rel="shortcut icon" type="image/jpg" href="{{ URL('/images/favicon.ico') }}"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-        <!-- from node_modules -->
-        <script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script>
-        
-        <!-- from cdn -->
-        <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
-            
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

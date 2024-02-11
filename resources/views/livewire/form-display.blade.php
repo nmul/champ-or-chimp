@@ -72,6 +72,8 @@
                 <div>Double Points Event 4</div>
                 <div>{{ $details ->double_points_4_answer ? DB::table('event')->where('id', $details ->double_points_4_answer )->first()->name  : "Quick Pick" }}</div>
 
+                <div>US Open Winning Score (Tiebreak)</div>
+                <div>{{ $details ->tiebreak }}</div>
                 
             @endif
 

@@ -5,7 +5,7 @@
         <h2>Your order number is: {{ $order->order_number }}</h2>
 
         <p>Order Total: €{{ number_format($order->amount_paid_cents / 100, 2) }}</p>
-        <p>Number Of Entries: {{ $order->  }}</p>
+        <p>Number Of Entries: {{ $order-> number_of_forms }}</p>
         <p>Best of luck in Champ or Chimp 2024!</p>
 
         <p>If you have any queries regarding your entry, please email us at info@champorchimp.com</p>

@@ -73,25 +73,25 @@ new #[Layout('layouts.guest')] class extends Component
                     <h1 class="text-center text-2xl font-bold mb-3">Register to Enter!</h1>
                     <!-- Name -->
                     <div class="mt-4">
-                        <x-text-input wire:model="first_name" id="first_name" class="block mt-1 w-60 md:w-80" type="text" name="first_name" required autofocus autocomplete="first_name" placeholder="First Name" aria-placeholder="First Name"/>
+                        <x-text-input wire:model="first_name" id="first_name" class="block mt-1 w-full" type="text" name="first_name" required autofocus autocomplete="first_name" placeholder="First Name" aria-placeholder="First Name"/>
                         <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                     </div>
         
                     <div class="mt-4">
-                        <x-text-input wire:model="last_name" id="last_name" class="block mt-1 w-60 md:w-80" type="text" name="last_name" required autofocus autocomplete="last_name" placeholder="Last Name" aria-placeholder="Last Name"/>
+                        <x-text-input wire:model="last_name" id="last_name" class="block mt-1 w-full" type="text" name="last_name" required autofocus autocomplete="last_name" placeholder="Last Name" aria-placeholder="Last Name"/>
                         <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                     </div>
         
                     <!-- Email Address -->
                     <div class="mt-4">
-                        <x-text-input wire:model="email" id="email" class="block mt-1 w-60 md:w-80" type="email" name="email" required autocomplete="username" placeholder="Email" aria-placeholder="email"/>
+                        <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" placeholder="Email" aria-placeholder="email"/>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
         
                     <!-- Password -->
                     <div class="mt-4">
         
-                        <x-text-input wire:model="password" id="password" class="block mt-1 w-60 md:w-80"
+                        <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
                                         type="password"
                                         name="password"
                                         required autocomplete="new-password" placeholder="Password" aria-placeholder="Password"/>
@@ -101,7 +101,7 @@ new #[Layout('layouts.guest')] class extends Component
         
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-60 md:w-80"
+                        <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
                                         type="password"
                                         name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password"  aria-placeholder="Confirm Password"/>
         
@@ -119,34 +119,8 @@ new #[Layout('layouts.guest')] class extends Component
                     </div>
                 </form>
             </div>
-
-        </div>
-
-
-        <div class="container max-w-md grid grid-cols-1 mx-auto custom-bg-orange mt-5 pb-5 mb-10">
-            <div class="flex flex-col justify-center align-middle">
-                <h1 class="font-bold text-4xl text-center my-3 custom-red-text p-3 rounded">Competition Events</h1>
-                <div class="w-60 md:w-80 mx-auto eggshell-bg text-black rounded">
-                    @foreach ($this->events as $event)
-                        <p class="events-table-p">{{ $event->name }}</p>
-                    @endforeach
-                </div>
-            </div>
-
             <div>
-                <div class="flex flex-col justify-center align-middle">
-                    <h1 class="text-4xl font-bold text-center my-3 custom-red-text p-3 rounded">Prizes</h1>
-                    <div class="w-80 mx-auto eggshell-bg text-black">
-                        <p class="events-table-p">2 Tickets to Las Vegas + €1,000</p>
-                        <p class="events-table-p">Chicago</p>
-                        <p class="events-table-p">€500 Flyshannon.ie voucher</p>
-                        <p class="events-table-p">Lanzarote</p>
-                        <p class="events-table-p">Gran Canaria</p>
-                        <p class="events-table-p">Faro</p>
-                        <p class="events-table-p">Naples</p>
-                        <p class="events-table-p">€3,000 FlyShannon.ie voucher for anyone selecting 14 correct predictions</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

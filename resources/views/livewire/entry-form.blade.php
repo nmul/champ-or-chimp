@@ -168,103 +168,104 @@
                 @if($currentPage == 2)
                 <div id="football-and-rugby"  class="max-w-md mx-auto">
                     <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Football and Rugby</h1>
-
-                    <!-----------------Champions Cup-------------------->
-                    <div class="formRow">
-                        <label for="championsCup" class="block mb-1 text-md font-medium text-gray-900">
-                            Rugby Champions Cup
-                        </label>
-                        @if($champions_cup_answer != '')
-                            <div class="flex flex-center">
-                                <input id="championsCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championscup')->where('id', $champions_cup_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_cup_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'championscup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer'])
-                        @endif
-                        <br>
-                    </div>
-
-                    <!-----------------Champions League-------------------->
-                    <div class="formRow">
-                        <label for="championsLeague" class="block mb-1 text-md font-medium text-gray-900">
-                            Champions League
-                        </label>
-                        @if($champions_league_answer != '')
-                            <div class="flex flex-center">
-                                <input id="championsLeague" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championsleague')->where('id', $champions_league_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_league_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'championsleague', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer'])
-                        @endif
-                        <br>
-                    </div>
-
-                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Horse Racing </h1>
-                    <!-----------------Champion Hurdle-------------------->
-                    <div class="formRow">
-                        <label for="championHurdle" class="block mb-1 text-md font-medium text-gray-900">
-                            Champion Hurdle
-                        </label>
-                        @if($champion_hurdle_answer != '')
-                            <div class="flex flex-center">
-                                <input id="championHurdle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championhurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champion_hurdle_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'championhurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer'])
-                        @endif
-                        <br>
-                    </div>
-                    <!-----------------Gold Cup-------------------->
-                    <div class="formRow">
-                        <label for="goldCup" class="block mb-1 text-md font-medium text-gray-900">
-                            Gold Cup
-                        </label>
-                        @if($gold_cup_answer != '')
-                            <div class="flex flex-center">
-                                <input id="goldCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('goldcup')->where('id', $gold_cup_answer)->first()->name }}" />
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gold_cup_answer')">Edit</button>
-                            </div>
-                        @else
-                            @livewire('autocomplete', ['table' => 'goldcup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer'])
-                        @endif
-                        <br>
-                    </div>
-
-                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Tennis</h1>
-    
-                        <!-----------------Wimbledon Ladies -------------------->
-                        <div class="formRow">
-                            <label for="wimbledonLadies" class="block mb-1 text-md font-medium text-gray-900">
-                                Wimbledon Ladies
+                    <div class="wrapper mt-3 mx-auto md:flex md:flex-col">
+                        <!-----------------Champions Cup-------------------->
+                        <div class="formRow ">
+                            <label for="championsCup" class="block mb-1 text-md font-medium text-gray-900">
+                                Rugby Champions Cup
                             </label>
-                            @if($wimbledon_ladies_answer != '')
+                            @if($champions_cup_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennisladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
-                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_ladies_answer')">Edit</button>
+                                    <input id="championsCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championscup')->where('id', $champions_cup_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_cup_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'tennisladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer'])
+                                @livewire('autocomplete', ['table' => 'championscup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer'])
                             @endif
                             <br>
                         </div>
-    
-                        <!-----------------Wimbledon Mens -------------------->
+
+                        <!-----------------Champions League-------------------->
                         <div class="formRow">
-                            <label for="wimbledonMens" class="block mb-1 text-md font-medium text-gray-900">
-                                Wimbledon Mens
+                            <label for="championsLeague" class="block mb-1 text-md font-medium text-gray-900">
+                                Champions League
                             </label>
-                            @if($wimbledon_mens_answer != '')
+                            @if($champions_league_answer != '')
                                 <div class="flex flex-center">
-                                    <input id="wimbledonMens" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennismen')->where('id', $wimbledon_mens_answer)->first()->name }}" />
-                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_mens_answer')">Edit</button>
+                                    <input id="championsLeague" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championsleague')->where('id', $champions_league_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_league_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'tennismen', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer'])
+                                @livewire('autocomplete', ['table' => 'championsleague', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer'])
                             @endif
                             <br>
+                        </div>
+
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Horse Racing </h1>
+                        <!-----------------Champion Hurdle-------------------->
+                        <div class="formRow">
+                            <label for="championHurdle" class="block mb-1 text-md font-medium text-gray-900">
+                                Champion Hurdle
+                            </label>
+                            @if($champion_hurdle_answer != '')
+                                <div class="flex flex-center">
+                                    <input id="championHurdle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('championhurdle')->where('id', $champion_hurdle_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champion_hurdle_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'championhurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer'])
+                            @endif
+                            <br>
+                        </div>
+                        <!-----------------Gold Cup-------------------->
+                        <div class="formRow">
+                            <label for="goldCup" class="block mb-1 text-md font-medium text-gray-900">
+                                Gold Cup
+                            </label>
+                            @if($gold_cup_answer != '')
+                                <div class="flex flex-center">
+                                    <input id="goldCup" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('goldcup')->where('id', $gold_cup_answer)->first()->name }}" />
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gold_cup_answer')">Edit</button>
+                                </div>
+                            @else
+                                @livewire('autocomplete', ['table' => 'goldcup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer'])
+                            @endif
+                            <br>
+                        </div>
+
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Tennis</h1>
+        
+                            <!-----------------Wimbledon Ladies -------------------->
+                            <div class="formRow">
+                                <label for="wimbledonLadies" class="block mb-1 text-md font-medium text-gray-900">
+                                    Wimbledon Ladies
+                                </label>
+                                @if($wimbledon_ladies_answer != '')
+                                    <div class="flex flex-center">
+                                        <input id="hurling" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennisladies')->where('id', $wimbledon_ladies_answer)->first()->name }}" />
+                                        <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_ladies_answer')">Edit</button>
+                                    </div>
+                                @else
+                                    @livewire('autocomplete', ['table' => 'tennisladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer'])
+                                @endif
+                                <br>
+                            </div>
+        
+                            <!-----------------Wimbledon Mens -------------------->
+                            <div class="formRow">
+                                <label for="wimbledonMens" class="block mb-1 text-md font-medium text-gray-900">
+                                    Wimbledon Mens
+                                </label>
+                                @if($wimbledon_mens_answer != '')
+                                    <div class="flex flex-center">
+                                        <input id="wimbledonMens" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" aria-readonly="true" readonly value="{{ DB::table('tennismen')->where('id', $wimbledon_mens_answer)->first()->name }}" />
+                                        <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_mens_answer')">Edit</button>
+                                    </div>
+                                @else
+                                    @livewire('autocomplete', ['table' => 'tennismen', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer'])
+                                @endif
+                                <br>
+                            </div>
                         </div>
                     <div class="flex flex-col items-center pb-10">
                         <!-- Help text -->
@@ -431,6 +432,16 @@
                             @else
                                 @livewire('autocomplete', ['table' => 'event', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'double_points_4_answer', 'doublePoints' => true, 'doublePointsAnswers' => $doublePointsAnswers])
                             @endif
+                            <br>
+                        </div>
+                        <!-------------------  Tie breaker ----------------------------->
+                        <div class="formRow">
+                            <label for="tiebreak" class="block mb-1 text-md font-medium text-gray-900">
+                                Winning score of US Masters? (e.g. -10)
+                            </label>
+                                <div class="flex flex-center">
+                                    <input wire:model="tiebreak" id="tiebreak" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5" type="number" step="1" min="-30" max="30" value="0" >
+                                </div>
                             <br>
                         </div>
                         <div class="flex flex-col items-center pb-10">

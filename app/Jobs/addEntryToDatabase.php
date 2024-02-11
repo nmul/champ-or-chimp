@@ -85,6 +85,9 @@ class addEntryToDatabase implements ShouldQueue
         $e -> double_points_2_id = $new_events_array[1];
         $e -> double_points_3_id = $new_events_array[2];
         $e -> double_points_4_id = $new_events_array[3];
+
+        $e -> tiebreak = $cartItem['tiebreak'];
+
         $e -> is_quick_pick = $cartItem['is_quick_pick'];
 
         $e -> order_id = $this->order_id;

@@ -83,6 +83,7 @@ class Entryform extends Component implements Buyable
     public $double_points_3_answer = '';
     #[Validate('nullable|exists:event,id', onUpdate: false)]
     public $double_points_4_answer = '';
+    public $tiebreak;
 
     public $golfAnswers = [];
     public $doublePointsAnswers = [];
@@ -117,6 +118,7 @@ class Entryform extends Component implements Buyable
             $this->double_points_2_answer = $cartForm['double_points_2_answer'];
             $this->double_points_3_answer = $cartForm['double_points_3_answer'];
             $this->double_points_4_answer = $cartForm['double_points_4_answer'];
+            $this->tiebreak = $cartForm['tiebreak'];
             $this->is_quick_pick = $cartForm['is_quick_pick'];
         } else {
             $this->entryForm = new EntryForm();
@@ -211,6 +213,7 @@ class Entryform extends Component implements Buyable
             "double_points_2_answer" => $this->double_points_2_answer,
             "double_points_3_answer" => $this->double_points_3_answer,
             "double_points_4_answer" => $this->double_points_4_answer,
+            "tiebreak" => $this->tiebreak,
             "is_quick_pick" => $this->is_quick_pick
         ];
 

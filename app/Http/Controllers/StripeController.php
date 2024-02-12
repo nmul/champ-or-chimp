@@ -30,7 +30,7 @@ class StripeController extends BaseController
     public function webhook()
     {
         $payload = @file_get_contents('php://input');
-        $endpoint_secret = "whsec_b8a5d4c3ca960ec1c57a1172602a049ae07a741be3e864fac8052ebc6243b544";
+        $endpoint_secret = config("stripe.ws");
         $event = null;
 
         try {

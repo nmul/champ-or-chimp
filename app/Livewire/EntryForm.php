@@ -7,7 +7,6 @@ use App\Models\Entry;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +15,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
-class Entryform extends Component
+class EntryForm extends Component
 {
     public $id;
     public $currentPage = 0;

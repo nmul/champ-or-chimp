@@ -6,7 +6,7 @@ use App\Livewire\PreviousEntries;
 use App\Livewire\StripeComponent;
 use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Entryform;
+use App\Livewire\EntryForm;
 use App\Livewire\CartPage;
 use App\Http\Controllers\StripeController\checkout;
 use App\Services\create;
@@ -31,8 +31,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/entry', Entryform::class)->middleware(['auth'])->name('entry');
-Route::get('/entry/{id}', Entryform::class)->middleware(['auth'])->name('entry');
+Route::get('/entry', EntryForm::class)->middleware(['auth'])->name('entry');
+Route::get('/entry/{id}', EntryForm::class)->middleware(['auth'])->name('entry');
 Route::post('checkout', CartPage::class)->middleware(['auth'])->name('checkout');
 Route::get('/cart', CartPage::class)->middleware(['auth'])->name('cart');
 Route::get('/success-page', SuccessPage::class)->name('success-page');

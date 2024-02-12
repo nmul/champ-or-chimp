@@ -14,6 +14,11 @@ openFaq8: false,
     <div id="main-info-wrapper" class="min-h-full">
         <h1 class="text-3xl font-bold text-center custom-red-text underline mb-3">Welcome to Champ or Chimp</h1> 
 
+        <p class="p-3 custom-orange-text text-2xl text-center">Know it all already? Go straight to entry form!</p>
+        <div class="flex justify-center">
+            <button class="mx-2 px-3 py-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white"><a href="{{ URL('entry') }}">Enter Now</a></button>
+        </div>
+
         <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction game out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
 
         <div class="flex flex-wrap -mx-4">
@@ -268,7 +273,7 @@ openFaq8: false,
                     <p
                         class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
                         >
-                        Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries in whichever fields you competitions you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate an entry for you for that competition.
+                        Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries for whichever competitions you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate an entry for you for that competition.
                     </p>
                 </div>
                 </div>
@@ -296,7 +301,7 @@ openFaq8: false,
                             />
                         </svg>
                     </div>
-                    <div class="w-full">
+                    <div class="w-full" id="quick-pick-question">
                         <h4
                             class="mt-1 text-lg font-semibold text-black "
                             >
@@ -357,7 +362,7 @@ openFaq8: false,
     </div>
     
     <section id="Scoring">
-        <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Scoring Information</h1>
+        <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Events</h1>
         <p class="p-3 text-xl">Below are the events which are in the 2024 Champ or Chimp Competition</p>
         <div class="grid grid-cols-1 lg:grid-cols-3 shadow-md mx-auto my-5">
             <div class="bg-white p-10 rounded-lg shadow-lg mx-3">
@@ -556,7 +561,7 @@ openFaq8: false,
                     </button>
                 </div>
             @else
-                <p class="p-3 text-xl">You're logged in, {{Auth::user()->first_name}}, submit a form here!</p>
+                <p class="p-3 text-xl">Hi {{Auth::user()->first_name}}, submit a form here!</p>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0">
                     <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white">

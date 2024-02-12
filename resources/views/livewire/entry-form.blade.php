@@ -7,49 +7,53 @@
                 <div id="landing-page" class="max-w-md mx-auto">
                     <h1 class="text-5xl font-extrabold mx-auto custom-orange-text text-center" id="first-ef-heading">Champ Or Chimp</h1>
                     <h1 class="text-3xl font-extrabold mx-auto custom-red-text text-center">Entry Form 2024</h1>
-                    <div class="flex items-start mb-3 mt-3">
+                    <h1 class="text-xl text-blue-500 underline text-center my-2"><a href="{{ URL('info') }}">Want to know more?</a></h1>
+
+                    <div class="mb-20 mt-3 p-5 bg-white shadow-md rounded">
+                        <p class="text-black block px-2 pb-1 mb-1 font-semibold">If you wish to enter on behalf of someone else, use this section to do so.</p>
                         <div class="flex items-center h-5">
                             <input id="enteringForSomeone" wire:model="enteringForSomeone" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <label for="enteringForSomeone" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>    
                         </div>
-                        <label for="enteringForSomeone" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>
+                        <div id="other-entry-div" class="hidden mt-2">
+                            <div class="mb-5">
+                                <label for="firstName" class="block mb-2 text-md font-medium text-gray-900">Entrant's First Name</label>
+                                <input wire:model="firstName" type="text" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="First Name">
+                            </div>
+                            <div class="mb-5">
+                                <label for="lastName" class="block mb-2 text-md font-medium text-gray-900">Entrant's Last Name</label>
+                                <input wire:model="lastName" type="text" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="Last Name">
+                            </div>
+                            <div class="mb-5">
+                                <label for="email" class="block mb-2 text-md font-medium text-gray-900">Entrant's Email</label>
+                                <input wire:model="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="Email">
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="other-entry-div" class="hidden">
-                        <div class="mb-5">
-                            <label for="firstName" class="block mb-2 text-md font-medium text-gray-900">Entrant's First Name</label>
-                            <input wire:model="firstName" type="text" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="First Name">
-                        </div>
-                        <div class="mb-5">
-                            <label for="lastName" class="block mb-2 text-md font-medium text-gray-900">Entrant's Last Name</label>
-                            <input wire:model="lastName" type="text" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="Last Name">
-                        </div>
-                        <div class="mb-5">
-                            <label for="email" class="block mb-2 text-md font-medium text-gray-900">Entrant's Email</label>
-                            <input wire:model="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="Email">
-                        </div>
-                    </div>
+                    
 
 
                     <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
                         <img id="winner-chimp" src="{{ URL('/images/winner-chimp.jpg') }}" >
                         <h1 class="text-right custom-red-text font-extrabold text-2xl">Feeling Lucky?</h1>
-                        <p>
+                        <p class="font-semibold">
                           Select quick pick to have an entry generated for you!
                         </p>
-                        <div class="flex items-center h-5 mt-2 mb-5 pb-5">
+                        <div class="flex items-center h-5 mt-2 mb-2 pb-2">
                             <input id="quick-pick" wire:model="is_quick_pick" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                             <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
                         </div>
+                        <p class="font-semibold">Learn more about Quick Pick Entries <a class="text-blue-500 underline" href="{{ URL('info#quick-pick-question') }}">here!</a></p>
                     </div>
+
+                    
 
                     <div class="flex flex-col items-center pb-10">
                     <!-- Buttons -->
                         <div class="inline-flex mt-2 xs:mt-0 mb-3">
-                            <button type="button" id="landing-page-cancel-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900">
-                                <a href="{{ URL('info') }}">More Info</a>
-                            </button>
                             <button type="button" id="landing-page-next-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
-                                Next
+                                Proceed to Entry
                             </button>
                         </div>
                     </div>
@@ -167,7 +171,7 @@
 
                 @if($currentPage == 2)
                 <div id="football-and-rugby"  class="max-w-md mx-auto">
-                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Football and Rugby</h1>
+                    <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text ml-0">Football and Rugby</h1>
                     <div class="wrapper mt-3 mx-auto md:flex md:flex-col">
                         <!-----------------Champions Cup-------------------->
                         <div class="formRow ">
@@ -201,7 +205,7 @@
                             <br>
                         </div>
 
-                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Horse Racing </h1>
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text ml-0">Horse Racing</h1>
                         <!-----------------Champion Hurdle-------------------->
                         <div class="formRow">
                             <label for="championHurdle" class="block mb-1 text-md font-medium text-gray-900">
@@ -233,7 +237,7 @@
                             <br>
                         </div>
 
-                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Tennis</h1>
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text ml-0">Tennis</h1>
         
                             <!-----------------Wimbledon Ladies -------------------->
                             <div class="formRow">
@@ -288,9 +292,9 @@
 
                     @if($currentPage == 3)
                     <div id="golfers" class="max-w-md mx-auto">
-                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Golfers</h1>
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text text-center">Golfers</h1>
 
-                        <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
+                        <div class="custom-alert-box" role="alert">
                             <img id="golfing-chimp" src="{{ URL('/images/golfing-chimp.jpg') }}" >
                             <h1 class="text-right custom-red-text font-extrabold text-2xl">Know your golf?</h1>
                             <p>
@@ -363,10 +367,10 @@
 
                     @if($currentPage == 4)
                     <div id="double-points-section" class="max-w-md mx-auto">
-                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text">Double Points</h1>
+                        <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text text-center">Double Points</h1>
 
 
-                        <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
+                        <div class="custom-alert-box" role="alert">
                             <img id="cute-chimp" src="{{ URL('/images/cute-chimp.jpg') }}" >
                             <h1 class="text-right custom-red-text font-extrabold text-2xl">Double Down!</h1>
                             <p>
@@ -478,7 +482,7 @@
             if ($('#quick-pick').is(":checked")){
                 $('#landing-page-next-button').html("Add To Cart");
             } else {
-                $('#landing-page-next-button').html("Next");
+                $('#landing-page-next-button').html("Proceed to Entry");
             }
         });
 
@@ -536,7 +540,7 @@
             if ($('#quick-pick').is(":checked")){
                 $('#landing-page-next-button').html("Add To Cart");
             } else {
-                $('#landing-page-next-button').html("Next");
+                $('#landing-page-next-button').html("Proceed to Entry");
             }
         });
     </script>

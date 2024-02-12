@@ -11,6 +11,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+#quick-pick-info-container {
+    height: 300px;
+}
+
 #flyShannonLogo {
     max-width: 300px;
 }

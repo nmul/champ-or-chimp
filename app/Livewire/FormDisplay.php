@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Entryform;
 use App\Models\Cart;
 use App\Models\Entry;
 use Illuminate\Http\Request;

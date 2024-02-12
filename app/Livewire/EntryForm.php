@@ -2,27 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\AnswerEvent;
-use App\Models\ChampionsLeague;
 use App\Models\Competition;
 use App\Models\Entry;
-use App\Models\Event;
-use App\Models\EventsInCompetition;
-use App\Models\MissingField;
-use App\Models\Prediction;
-use App\Models\User;
-use App\Models\Camogie;
 use App\Models\Cart;
-use App\Models\ChampionHurdle;
-use App\Models\ChampionsCup;
-use App\Models\Gaelic;
-use App\Models\GoldCup;
-use App\Models\Golf;
-use App\Models\Hurling;
-use App\Models\LadiesGaelic;
-use App\Models\WibmledonLady;
-use App\Models\WibmledonMen;
-use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
@@ -34,7 +16,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
-class Entryform extends Component implements Buyable
+class Entryform extends Component
 {
     public $id;
     public $currentPage = 0;
@@ -239,16 +221,6 @@ class Entryform extends Component implements Buyable
         $this->redirect(CartPage::class);  
     }
 
-    function getBuyableDescription(mixed $options = null){
-        return 'champ or chimp form';
-    }
-    function getBuyableIdentifier(mixed $options = null) {
-        return $this->id;
-    }
-    function getBuyablePrice(mixed $options = null){
-        return 10;
-    }
-
     public function autocompleteNotEmpty(){
         $this->dispatch('validateAutoComplete');
     }
@@ -276,15 +248,5 @@ class Entryform extends Component implements Buyable
             'doublePointsAnswers' => $doublePointsAnswers,
             'golfAnswers' => $golfAnswers,
         ])->layout('layouts.app');
-    }
-
-    public function now(){
-        return (string)time();
-    }
-
-    public function addToArrayIfPresent($array, $input){
-        if ($input != null && $input != ''){
-            array_push($array, $input);
-        }
     }
 }

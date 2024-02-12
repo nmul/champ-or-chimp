@@ -6715,16 +6715,16 @@
         },
         {
             "name": "laradumps/laradumps-core",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradumps/laradumps-core.git",
-                "reference": "342aa52f82cd7a1297ef6a3cb5bb6526558332ec"
+                "reference": "e976cdf04473ff3c69f8e82632209915893bca77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradumps/laradumps-core/zipball/342aa52f82cd7a1297ef6a3cb5bb6526558332ec",
-                "reference": "342aa52f82cd7a1297ef6a3cb5bb6526558332ec",
+                "url": "https://api.github.com/repos/laradumps/laradumps-core/zipball/e976cdf04473ff3c69f8e82632209915893bca77",
+                "reference": "e976cdf04473ff3c69f8e82632209915893bca77",
                 "shasum": ""
             },
             "require": {
@@ -6739,6 +6739,7 @@
                 "vlucas/phpdotenv": "^5.6"
             },
             "require-dev": {
+                "illuminate/support": "^10.43",
                 "laravel/pint": "^1.13.7",
                 "pestphp/pest": "^2.28.1",
                 "phpstan/phpstan": "^1.10.50"
@@ -6770,7 +6771,7 @@
             "homepage": "https://github.com/laradumps/laradumps-core",
             "support": {
                 "issues": "https://github.com/laradumps/laradumps-core/issues",
-                "source": "https://github.com/laradumps/laradumps-core/tree/v1.1.2"
+                "source": "https://github.com/laradumps/laradumps-core/tree/v1.1.3"
             },
             "funding": [
                 {
@@ -6778,7 +6779,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-02T22:47:05+00:00"
+            "time": "2024-02-11T18:12:43+00:00"
         },
         {
             "name": "laravel/breeze",
@@ -8875,16 +8876,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67"
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/005e1e7b1232f3b22d7e7be3f602693efc7dba67",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/351504f4570e32908839fc5a2dc53bf77d02f85e",
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e",
                 "shasum": ""
             },
             "require": {
@@ -8963,7 +8964,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-12T13:14:58+00:00"
+            "time": "2024-02-09T16:08:40+00:00"
         },
         {
             "name": "symfony/yaml",

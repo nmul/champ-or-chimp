@@ -31,8 +31,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/entry', Entryform::class)->middleware(['auth'])->name('entryform');
-Route::get('/entry/{id}', Entryform::class)->middleware(['auth'])->name('entryform');
+Route::get('/entry', Entryform::class)->middleware(['auth'])->name('entry');
+Route::get('/entry/{id}', Entryform::class)->middleware(['auth'])->name('entry');
 Route::post('checkout', CartPage::class)->middleware(['auth'])->name('checkout');
 Route::get('/cart', CartPage::class)->middleware(['auth'])->name('cart');
 Route::get('/success-page', SuccessPage::class)->name('success-page');

@@ -17,19 +17,6 @@ new #[Layout('layouts.guest')] class extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
-    public $events = null;
-    public int $competition_id;
-
-    public function mount(){
-        $competition_id = 12;
-        $event_ids = DB::table('events_in_competition')
-                     ->where('competition_id', $competition_id)
-                     ->pluck('event_id')
-                     ->toArray();
-        $this->events = DB::table('Event')
-                  ->whereIn('id', $event_ids)
-                  ->get();
-    }
 
     /**
      * Handle an incoming registration request.

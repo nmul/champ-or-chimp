@@ -232,7 +232,7 @@ class EntryForm extends Component
                      ->where('competition_id', $competition_id)
                      ->pluck('event_id')
                      ->toArray();
-        $events = DB::table('Event')
+        $events = DB::table('event')
                   ->whereIn('id', $event_ids)
                   ->get();
 

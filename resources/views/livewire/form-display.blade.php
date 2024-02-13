@@ -28,28 +28,28 @@
 
                 
                 <div>All Ireland Ladies Football</div>
-                <div>{{ $details ->ladies_gaelic_answer ? DB::table('ladies_gaelic')->where('id', $details ->ladies_gaelic_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->ladies_gaelic_answer ? DB::table('ladiesgaelic')->where('id', $details ->ladies_gaelic_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>All Ireland Mens Football</div>
                 <div>{{ $details ->gaelic_answer ? DB::table('gaelic')->where('id', $details ->gaelic_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Champions Cup</div>
-                <div>{{ $details ->champions_cup_answer ? DB::table('champions_cup')->where('id', $details ->champions_cup_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->champions_cup_answer ? DB::table('championscup')->where('id', $details ->champions_cup_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Champions League</div>
-                <div>{{ $details ->champions_league_answer ? DB::table('champions_league')->where('id', $details ->champions_league_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->champions_league_answer ? DB::table('championsleague')->where('id', $details ->champions_league_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Champion Hurdle</div>
-                <div>{{ $details ->champion_hurdle_answer ? DB::table('champion_hurdle')->where('id', $details ->champion_hurdle_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->champion_hurdle_answer ? DB::table('championhurdle')->where('id', $details ->champion_hurdle_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Gold Cup</div>
-                <div>{{ $details ->gold_cup_answer ? DB::table('gold_cup')->where('id', $details ->gold_cup_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->gold_cup_answer ? DB::table('goldcup')->where('id', $details ->gold_cup_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Wimbledon Ladies</div>
-                <div>{{ $details ->wimbledon_ladies_answer ? DB::table('wibmledon_ladies')->where('id', $details->wimbledon_ladies_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->wimbledon_ladies_answer ? DB::table('tennisladies')->where('id', $details->wimbledon_ladies_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Wimbledon Mens</div>
-                <div>{{ $details ->wimbledon_mens_answer ? DB::table('wibmledon_mens')->where('id', $details ->wimbledon_mens_answer )->first()->name  : "Quick Pick" }}</div>
+                <div>{{ $details ->wimbledon_mens_answer ? DB::table('tennismen')->where('id', $details ->wimbledon_mens_answer )->first()->name  : "Quick Pick" }}</div>
 
                 <div>Golfer 1</div>
                 <div>{{ $details ->golf_1_answer ? DB::table('golf')->where('id', $details ->golf_1_answer )->first()->name  : "Quick Pick" }}</div>

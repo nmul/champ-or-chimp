@@ -25,7 +25,7 @@ class FormDisplay extends Component
 
     public function editEntryForm(String $entryFormId)
     {
-        $this->redirectRoute('entryform', ["id" => $entryFormId]);
+        $this->redirectRoute('entry', ["id" => $entryFormId]);
     }
 
     public function deleteEntryForm(String $entryFormId, Request $request)

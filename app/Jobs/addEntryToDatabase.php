@@ -85,15 +85,15 @@ class addEntryToDatabase implements ShouldQueue
         $e -> double_points_2_id = $new_events_array[1];
         $e -> double_points_3_id = $new_events_array[2];
         $e -> double_points_4_id = $new_events_array[3];
-
-        $e -> tiebreak = $cartItem['tiebreak'];
-
+        if ($cartItem['tiebreak'] == null || $cartItem['tiebreak'] == ''){
+            $e -> tiebreak = mt_rand(-20, -5);
+        } else {
+            $e -> tiebreak = $cartItem['tiebreak'];
+        }
         $e -> is_quick_pick = $cartItem['is_quick_pick'];
-
         $e -> order_id = $this->order_id;
         $completed_entry = Entry::create( $e->toArray() );
         $new_entry_id = $completed_entry -> id;
-
         $camogie_prediction = new Prediction();
         $camogie_prediction-> entry_id = $new_entry_id;
         $camogie_prediction-> event_id = $camogie_id;
@@ -106,8 +106,6 @@ class addEntryToDatabase implements ShouldQueue
             $camogie_prediction-> selection_id = $cartItem['camogie_answer'];
         }
         Prediction::create($camogie_prediction->toArray());
-
-
         $champion_hurdle_prediction = new Prediction();
         $champion_hurdle_prediction-> entry_id = $new_entry_id;
         $champion_hurdle_prediction-> event_id = $champion_hurdle_id;
@@ -120,8 +118,6 @@ class addEntryToDatabase implements ShouldQueue
             $champion_hurdle_prediction-> selection_id = $cartItem['champion_hurdle_answer'];
         }
         Prediction::create($champion_hurdle_prediction->toArray());
-
-
         $champions_cup_prediction = new Prediction();
         $champions_cup_prediction-> entry_id = $new_entry_id;
         $champions_cup_prediction-> event_id = $champions_cup_id;

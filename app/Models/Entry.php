@@ -33,7 +33,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * 
  * @property Competition $competition
- * @property Golf $golf
  * @property User $user
  * @property Collection|MissingField[] $missing_fields
  * @property Collection|Prediction[] $predictions
@@ -82,10 +81,6 @@ class Entry extends Model
 		return $this->belongsTo(Competition::class);
 	}
 
-	public function golf()
-	{
-		return $this->belongsTo(Golf::class, 'golf_3_id');
-	}
 
 	public function user()
 	{

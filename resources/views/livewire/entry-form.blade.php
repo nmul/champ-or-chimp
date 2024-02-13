@@ -271,25 +271,23 @@
                                 <br>
                             </div>
                         </div>
-                    <div class="flex flex-col items-center pb-10">
-                        <!-- Help text -->
-                        <span class="text-sm text-gray-700">
-                            Page <span class="font-semibold text-gray-900">{{ $currentPage }}</span> of <span class="font-semibold text-gray-900">{{ $maxPage }}</span>
-                        </span>
-                        <!-- Buttons -->
-                        <div class="inline-flex mt-2 xs:mt-0">
-                            <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 custom-back-button">
-                                Prev
-                            </button>
-                            <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 custom-next-button">
-                                Next
-                            </button>
+                        <div class="flex flex-col items-center pb-10">
+                            <!-- Help text -->
+                            <span class="text-sm text-gray-700">
+                                Page <span class="font-semibold text-gray-900">{{ $currentPage }}</span> of <span class="font-semibold text-gray-900">{{ $maxPage }}</span>
+                            </span>
+                            <!-- Buttons -->
+                            <div class="inline-flex mt-2 xs:mt-0">
+                                <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 custom-back-button">
+                                    Prev
+                                </button>
+                                <button type="button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 custom-next-button">
+                                    Next
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-               
+                    </div>     
                 @endif
-
                     @if($currentPage == 3)
                     <div id="golfers" class="max-w-md mx-auto">
                         <h1 class="text-4xl font-extrabold mx-auto mb-3 custom-red-text text-center">Golfers</h1>
@@ -313,7 +311,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_1_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer', 'golf' => true, 'golfAnswers' => $golfAnswers], key($this->now()))
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer', 'golf' => true, 'golfAnswers' => $golfAnswers])
                             @endif
                             <br>
                         </div>
@@ -328,7 +326,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_2_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer', 'golf' => true, 'golfAnswers' => $golfAnswers], key($this->now()))
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer', 'golf' => true, 'golfAnswers' => $golfAnswers])
                             @endif
                             <br>
                         </div>
@@ -343,7 +341,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_3_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer', 'golf' => true , 'golfAnswers' => $golfAnswers], key($this->now()))
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer', 'golf' => true , 'golfAnswers' => $golfAnswers])
                             @endif
                             <br>
                         </div>

@@ -22,7 +22,7 @@ openFaq8: false,
         <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction game out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
 
         <div class="flex flex-wrap -mx-4">
-            <div class="w-full px-4 lg:w-1/2">
+            <div class="lg:w-1/2 px-4 w-full">
                 <div
                 class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
                 >
@@ -196,7 +196,7 @@ openFaq8: false,
                 </div>
                 </div>
             </div>
-            <div class="w-full px-4 lg:w-1/2">
+            <div class="lg:w-1/2 px-4 w-full">
                 <div
                 class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
                 >
@@ -362,7 +362,7 @@ openFaq8: false,
     </div>
     
     <section id="Scoring">
-        <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Events</h1>
+        <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Events in 2024 Competition</h1>
         <p class="p-3 text-xl">Below are the events which are in the 2024 Champ or Chimp Competition</p>
         <div class="grid grid-cols-1 lg:grid-cols-3 shadow-md mx-auto my-5">
             <div class="bg-white p-10 rounded-lg shadow-lg mx-3">
@@ -564,7 +564,7 @@ openFaq8: false,
                 <p class="p-3 text-xl">Hi {{Auth::user()->first_name}}, submit a form here!</p>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0">
-                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white">
+                    <button type="button" id="custom-red-button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white text-white ">
                         <a href="{{ URL('entry') }}">Entry Form</a>
                     </button>
                 </div>

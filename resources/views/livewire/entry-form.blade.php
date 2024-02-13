@@ -7,7 +7,7 @@
                 <div id="landing-page" class="max-w-md mx-auto">
                     <h1 class="text-5xl font-extrabold mx-auto custom-orange-text text-center" id="first-ef-heading">Champ Or Chimp</h1>
                     <h1 class="text-3xl font-extrabold mx-auto custom-red-text text-center">Entry Form 2024</h1>
-                    <h1 class="text-xl text-blue-500 underline text-center my-2"><a href="{{ URL('info') }}">Want to know more?</a></h1>
+                    <h1 class="text-xl text-blue-500 underline text-center my-2"><a href="{{ URL('/') }}">Want to know more?</a></h1>
 
                     <div class="mb-20 mt-3 p-5 bg-white shadow-md rounded">
                         <p class="text-black block px-2 pb-1 mb-1 font-semibold">If you wish to enter on behalf of someone else, use this section to do so.</p>
@@ -44,7 +44,7 @@
                             <input id="quick-pick" wire:model="is_quick_pick" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                             <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
                         </div>
-                        <p class="font-semibold">Learn more about Quick Pick Entries <a class="text-blue-500 underline" href="{{ URL('info#quick-pick-question') }}">here!</a></p>
+                        <p class="font-semibold">Learn more about Quick Pick Entries <a class="text-blue-500 underline" href="{{ URL('/#quick-pick-question') }}">here!</a></p>
                     </div>
 
                     

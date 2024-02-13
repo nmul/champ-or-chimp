@@ -21,12 +21,6 @@ use App\Services\create;
 |
 */
 
-Route::view('/', 'welcome');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
@@ -36,9 +30,7 @@ Route::get('/entry/{id}', EntryForm::class)->middleware(['auth'])->name('entry')
 Route::post('checkout', CartPage::class)->middleware(['auth'])->name('checkout');
 Route::get('/cart', CartPage::class)->middleware(['auth'])->name('cart');
 Route::get('/success-page', SuccessPage::class)->name('success-page');
-Route::get('/info', InfoPage::class)->name('info');
-
-Route::get('/welcome', LandingPage::class)->name('welcome');
+Route::get('/', InfoPage::class)->name('info');
 
 
 Route::post('/webhook', [App\Http\Controllers\StripeController::class, 'webhook'])->name('webhook');

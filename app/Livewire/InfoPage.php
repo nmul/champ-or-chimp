@@ -8,6 +8,6 @@ class InfoPage extends Component
 {
     public function render()
     {
-        return view('livewire.info-page')->layout('layouts.app');
+        return view('livewire.info-page')->layout('layouts.guest');
     }
 }

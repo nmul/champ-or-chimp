@@ -31,7 +31,7 @@ new #[Layout('layouts.guest')] class extends Component
 <div>
     <div class="container mt-3 rounded-lg shadow mx-auto h-full flex justify-center custom-bg-color">
         <div id="landing-page" class="max-w-md mx-auto">
-            <h1 class="text-5xl font-extrabold mx-auto custom-orange-text text-center pt-3">Login</h1>
+            <h1 class="text-5xl font-bold mx-auto custom-orange-text text-center pt-3">Login</h1>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
             <form wire:submit="login">
@@ -62,7 +62,7 @@ new #[Layout('layouts.guest')] class extends Component
                     </label>
                 </div>
 
-                <div class="flex items-center justify-end mt-4 mb-10">
+                <div class="flex items-center justify-end mt-4 mb-3">
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 0 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                             {{ __('Forgot your password?') }}
@@ -72,6 +72,9 @@ new #[Layout('layouts.guest')] class extends Component
                     <x-primary-button class="ms-3">
                         {{ __('Log in') }}
                     </x-primary-button>
+                </div>
+                <div class="mb-10">
+                    <p class="text-center">Not A Member? <a class="mx-auto text-center underline text-sm text-gray-600 0 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ URL('register') }}">Register</a></p>
                 </div>
             </form>
         </div>

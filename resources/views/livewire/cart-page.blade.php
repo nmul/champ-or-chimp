@@ -38,7 +38,9 @@
 
                     @foreach($cart as $details)
                         @livewire(FormDisplay::class, ['details' => $details, 'loopIteration' => $loop->iteration, 'total' => count($cart)], key($details->id))
+                        <hr>
                     @endforeach
+                    
                 </div>
                 <form action="POST" wire:submit="checkout">
                     @csrf

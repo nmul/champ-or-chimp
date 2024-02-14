@@ -75,7 +75,7 @@ class EntryForm extends Component
         $token = Session::get('cart_token');
         $cart = Cart::where('unique_identifier', $token)->first();
         $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
-        $this->currentPage = 0;
+        $this->currentPage = 1;
         $this->maxPage = 4;
         if (isset($id) && $cartItems != null && $cartItems[$id] != null){
             $cartForm = $cartItems[$id];
@@ -103,6 +103,14 @@ class EntryForm extends Component
             $this->double_points_4_answer = $cartForm['double_points_4_answer'];
             $this->tiebreak = $cartForm['tiebreak'];
             $this->is_quick_pick = $cartForm['is_quick_pick'];
+            array_push($this->doublePointsAnswers, $cartForm['double_points_1_answer']);
+            array_push($this->doublePointsAnswers, $cartForm['double_points_2_answer']);
+            array_push($this->doublePointsAnswers, $cartForm['double_points_3_answer']);
+            array_push($this->doublePointsAnswers, $cartForm['double_points_4_answer']);
+            $this->doublePointsAnswers = array_filter($this->doublePointsAnswers, function($value) {
+                return $value !== null;
+            });
+            
         } else {
             $this->entryForm = new EntryForm();
         }
@@ -173,6 +181,11 @@ class EntryForm extends Component
             }
         }
 
+        $this->double_points_1_answer = $this->doublePointsAnswers[0] ?? null;
+        $this->double_points_2_answer = $this->doublePointsAnswers[1] ?? null;
+        $this->double_points_3_answer = $this->doublePointsAnswers[2] ?? null;
+        $this->double_points_4_answer = $this->doublePointsAnswers[3] ?? null;
+
         $newItem = [
             "id" => $this->id,
             "enteringForSomeone" => $this->enteringForSomeone,
@@ -224,6 +237,11 @@ class EntryForm extends Component
         $this->dispatch('validateAutoComplete');
     }
 
+    public function assignArrayItemsToFields()
+    {
+        
+    }
+
     public function render()
     {
         $competition_id = 12;
@@ -237,14 +255,16 @@ class EntryForm extends Component
                   ->get();
 
         $golfAnswers = array(); 
-        $doublePointsAnswers = array();
         
+        if (count($this->doublePointsAnswers) > 4){
+            array_shift($this->doublePointsAnswers);
+        }
         
         return view('livewire.entry-form', [
             'competition' => $competition,
             'event_ids'=> $event_ids,
             'events' => $events,
-            'doublePointsAnswers' => $doublePointsAnswers,
+            'doublePointsAnswers' => $this->doublePointsAnswers,
             'golfAnswers' => $golfAnswers,
         ])->layout('layouts.app');
     }

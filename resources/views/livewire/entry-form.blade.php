@@ -14,10 +14,10 @@
                     <div class="mb-20 mt-3 p-5 bg-white shadow-md rounded">
                         <p class="text-black block px-2 pb-1 mb-1 font-semibold">If you wish to enter on behalf of someone else, use this section to do so.</p>
                         <div class="flex items-center h-5">
-                            <input id="enteringForSomeone" wire:model="enteringForSomeone" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <input id="enteringForSomeone" wire:model="enteringForSomeone" type="checkbox" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                             <label for="enteringForSomeone" class="ms-2 text-md font-medium text-gray-900">Are you entering for someone else?</label>    
                         </div>
-                        <div id="other-entry-div" class="hidden mt-2">
+                        <div id="other-entry-div" class="mt-2 {{ $enteringForSomeone ? 'flex' : 'hidden' }}">
                             <div class="mb-5">
                                 <label for="firstName" class="block mb-2 text-md font-medium text-gray-900">Entrant's First Name</label>
                                 <input wire:model="firstName" type="text" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5" placeholder="First Name">
@@ -43,7 +43,27 @@
                         <div class="flex items-center h-5 mt-2 mb-2 pb-2">
                             <input id="quick-pick" wire:model="is_quick_pick" type="checkbox" value="" class="w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                             <label for="quick-pick" class="ms-2 text-md font-medium text-gray-900">Quick Pick?</label>
+                            
                         </div>
+
+                            <div id="multipleQuickPick" class="{{ $is_quick_pick ? 'flex' : 'hidden' }}">
+                                <div class="relative flex items-center max-w-[8rem]">
+                                    @if($numberOfQuickPicks > 1)
+                                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
+                                        <svg class="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                        </svg>
+                                    </button>
+                                    @endif
+                                    <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 " wire:model="numberOfQuickPicks" />
+                                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                        <svg class="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        <p id="helper-text-explanation" class="mt-2 text-sm text-gray-900 ">Would you like to enter more than 1 quick pick? 3 Entries for €20!</p>
                         <p class="font-semibold">Learn more about Quick Pick Entries <a class="text-blue-500 underline" href="{{ URL('/#quick-pick-question') }}">here!</a></p>
                     </div>
 
@@ -53,7 +73,7 @@
                     <!-- Buttons -->
                         <div class="inline-flex mt-2 xs:mt-0 mb-3">
                             <button type="button" id="landing-page-next-button" class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900">
-                                Proceed to Entry
+                                {{ $is_quick_pick ? "Add To Cart" : "Proceed To Entry" }}
                             </button>
                         </div>
                     </div>
@@ -384,11 +404,11 @@
                             </p>
                         </div>
     
-                        <!-------------------  Double Points 1 ----------------------------->
+                        <!-------------------  Double Points ----------------------------->
 
                         @foreach ($events as $event)
-                            <div class="w-full flex flex-row m-2 border-gray-300">
-                                <input type="checkbox" value="{{ $event->id }}" wire:model.live="doublePointsAnswers" id="{{ $event->name }}" class="w-4 h-4 mt-2 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <div class="w-full flex flex-row m-2 my-1 py-2 border-gray-300">
+                                <input type="checkbox" value="{{ $event->id }}" wire:model.live="doublePointsAnswers" id="{{ $event->name }}" class="w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-black rounded focus:ring-blue-500">
                                 <label for="{{ $event->name }}" class="ms-2 text-lg font-medium text-gray-900">
                                     {{ $event->name}}
                                 </label>
@@ -428,31 +448,34 @@
             </form>
         </div>
     <hr>
-
     @script
-    <script>     
-        $(document).ready(function () {
-            
-            if ($('#enteringForSomeone').is(":checked")){
-                $('#other-entry-div').show();
-            } else {
-                $('#other-entry-div').hide();
-            }
+    <script>
 
-            if ($('#quick-pick').is(":checked")){
-                $('#landing-page-next-button').html("Add To Cart");
-            } else {
-                $('#landing-page-next-button').html("Proceed to Entry");
+        $(document).on('click', '#decrement-button', function () {
+            //if value is 1 don't lower any further
+            let numOfQuickPicks = $wire.$get('numberOfQuickPicks');
+            if ($wire.$get('numberOfQuickPicks') > 1){
+                numOfQuickPicks--;
+                $wire.$set('numberOfQuickPicks', numOfQuickPicks);
             }
-        });
+        })
+
+        $(document).on('click', '#increment-button', function () {
+            //if value is 1 don't lower any further
+            let numOfQuickPicks = $wire.$get('numberOfQuickPicks');
+            numOfQuickPicks++;
+            $wire.$set('numberOfQuickPicks', numOfQuickPicks);
+        })
 
         $(document).on('click', '#landing-page-next-button', function() {
             if ($('#quick-pick').is(":checked")){
-                // work on showing a modal here tomorrow
                 $wire.addToCart();
             } else {
                 let currPage = $wire.$get('currentPage')
                 $wire.$set('currentPage', currPage + 1);
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 250); // Adjust delay as needed
             }
         });
 
@@ -468,12 +491,18 @@
             if (valid){
                 let currPage = $wire.$get('currentPage');
                 $wire.$set('currentPage', currPage + 1);
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 250); // Adjust delay as needed
             }
         });
 
         $(document).on('click', '.custom-back-button', function () {
             let currPage = $wire.$get('currentPage');
             $wire.$set('currentPage', currPage - 1);
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 250); // Adjust delay as needed
         });
 
         $(document).on('change', '#enteringForSomeone', function() {
@@ -499,8 +528,10 @@
         $(document).on('change', '#quick-pick', function() {
             if ($('#quick-pick').is(":checked")){
                 $('#landing-page-next-button').html("Add To Cart");
+                $('#multipleQuickPick').show();
             } else {
                 $('#landing-page-next-button').html("Proceed to Entry");
+                $('#multipleQuickPick').hide();
             }
         });
     </script>

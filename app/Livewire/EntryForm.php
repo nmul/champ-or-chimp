@@ -72,11 +72,18 @@ class EntryForm extends Component
 
     public $fieldToFocus = '';
 
+    public $numberOfQuickPicks = 1;
+
+
+    public function updateCurrentPage($numberToAdd){
+        $this->currentPage = $this->currentPage + $numberToAdd;
+        $this->dispatch("page_updated");
+    }
+
     public function mount($id = null){
         $token = Session::get('cart_token');
         $cart = Cart::where('unique_identifier', $token)->first();
         $cartItems = Cart::getCartItemsAsArrayFromToken($cart);
-        $this->currentPage = 1;
         $this->maxPage = 4;
         if (isset($id) && $cartItems != null && $cartItems[$id] != null){
             $cartForm = $cartItems[$id];
@@ -111,6 +118,8 @@ class EntryForm extends Component
             $this->doublePointsAnswers = array_filter($this->doublePointsAnswers, function($value) {
                 return $value !== null;
             });
+
+            $this->currentPage = $id != null && $this->is_quick_pick ? 0 : 1;
             
         } else {
             $this->entryForm = new EntryForm();
@@ -153,6 +162,7 @@ class EntryForm extends Component
     }
 
     public function addToCart(Request $request){
+        
         $validated = $this->validate();
 
         $user = Auth::user();
@@ -162,6 +172,8 @@ class EntryForm extends Component
         if (empty($this-> id)){
             $this->id = Str::random(30);
         }
+
+        error_log("adding item to cart with id : " . $this->id);
         // check for the session token
 
         $token = $request->session()->get('cart_token');
@@ -190,35 +202,68 @@ class EntryForm extends Component
         $this->double_points_3_answer = $this->doublePointsAnswers[2] ?? null;
         $this->double_points_4_answer = $this->doublePointsAnswers[3] ?? null;
 
-        $newItem = [
-            "id" => $this->id,
-            "enteringForSomeone" => $this->enteringForSomeone,
-            "firstName" => $formFirst,
-            "lastName" => $formLast,
-            "email" => $formEmail,
-            "champion_hurdle_answer" => $this->champion_hurdle_answer,
-            "gold_cup_answer" => $this->gold_cup_answer,
-            "champions_cup_answer" => $this->champions_cup_answer,
-            "champions_league_answer" => $this->champions_league_answer,
-            "wimbledon_ladies_answer" => $this->wimbledon_ladies_answer,
-            "wimbledon_mens_answer" => $this->wimbledon_mens_answer,
-            "hurling_answer" => $this->hurling_answer,
-            "gaelic_answer" => $this->gaelic_answer,
-            "ladies_gaelic_answer" => $this->ladies_gaelic_answer,
-            "camogie_answer" => $this->camogie_answer,
-            "golf_1_answer" => $this->golf_1_answer,
-            "golf_2_answer" => $this->golf_2_answer,
-            "golf_3_answer" => $this->golf_3_answer,
-            "double_points_1_answer" => $this->double_points_1_answer,
-            "double_points_2_answer" => $this->double_points_2_answer,
-            "double_points_3_answer" => $this->double_points_3_answer,
-            "double_points_4_answer" => $this->double_points_4_answer,
-            "tiebreak" => $this->tiebreak,
-            "is_quick_pick" => $this->is_quick_pick
-        ];
 
-        $cartItems[$this->id] =  $newItem;
-
+        if ($this->is_quick_pick && $this->numberOfQuickPicks > 1){
+            for ($x = 0; $x < $this->numberOfQuickPicks; $x++) {
+                $id = Str::random(30);
+                $newItem = [
+                    "id" => $id,
+                    "enteringForSomeone" => $this->enteringForSomeone,
+                    "firstName" => $formFirst,
+                    "lastName" => $formLast,
+                    "email" => $formEmail,
+                    "champion_hurdle_answer" => $this->champion_hurdle_answer,
+                    "gold_cup_answer" => $this->gold_cup_answer,
+                    "champions_cup_answer" => $this->champions_cup_answer,
+                    "champions_league_answer" => $this->champions_league_answer,
+                    "wimbledon_ladies_answer" => $this->wimbledon_ladies_answer,
+                    "wimbledon_mens_answer" => $this->wimbledon_mens_answer,
+                    "hurling_answer" => $this->hurling_answer,
+                    "gaelic_answer" => $this->gaelic_answer,
+                    "ladies_gaelic_answer" => $this->ladies_gaelic_answer,
+                    "camogie_answer" => $this->camogie_answer,
+                    "golf_1_answer" => $this->golf_1_answer,
+                    "golf_2_answer" => $this->golf_2_answer,
+                    "golf_3_answer" => $this->golf_3_answer,
+                    "double_points_1_answer" => $this->double_points_1_answer,
+                    "double_points_2_answer" => $this->double_points_2_answer,
+                    "double_points_3_answer" => $this->double_points_3_answer,
+                    "double_points_4_answer" => $this->double_points_4_answer,
+                    "tiebreak" => $this->tiebreak,
+                    "is_quick_pick" => $this->is_quick_pick
+                ];
+                $cartItems[$id] = $newItem;
+            }
+        } else {
+            $newItem = [
+                "id" => $this->id,
+                "enteringForSomeone" => $this->enteringForSomeone,
+                "firstName" => $formFirst,
+                "lastName" => $formLast,
+                "email" => $formEmail,
+                "champion_hurdle_answer" => $this->champion_hurdle_answer,
+                "gold_cup_answer" => $this->gold_cup_answer,
+                "champions_cup_answer" => $this->champions_cup_answer,
+                "champions_league_answer" => $this->champions_league_answer,
+                "wimbledon_ladies_answer" => $this->wimbledon_ladies_answer,
+                "wimbledon_mens_answer" => $this->wimbledon_mens_answer,
+                "hurling_answer" => $this->hurling_answer,
+                "gaelic_answer" => $this->gaelic_answer,
+                "ladies_gaelic_answer" => $this->ladies_gaelic_answer,
+                "camogie_answer" => $this->camogie_answer,
+                "golf_1_answer" => $this->golf_1_answer,
+                "golf_2_answer" => $this->golf_2_answer,
+                "golf_3_answer" => $this->golf_3_answer,
+                "double_points_1_answer" => $this->double_points_1_answer,
+                "double_points_2_answer" => $this->double_points_2_answer,
+                "double_points_3_answer" => $this->double_points_3_answer,
+                "double_points_4_answer" => $this->double_points_4_answer,
+                "tiebreak" => $this->tiebreak,
+                "is_quick_pick" => $this->is_quick_pick
+            ];    
+            $cartItems[$this->id] =  $newItem;
+        }
+        
         // recode the items
         $cart->data = $cartItems;
         $cart_as_json = json_encode($cart->data);

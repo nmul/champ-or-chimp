@@ -92,7 +92,7 @@
                       {{ __('Log Out') }}
                   </x-responsive-nav-link>
                 </button>
-                <button type="button" class="mx-2 px-2 h-10 text-base font-medium border bg-green-500 border-gray-700 rounded-e hover:bg-gray-900" >
+                <button type="button" class="mx-2 px-2 h-10 text-base font-medium border bg-blue-500 border-gray-700 rounded-e hover:bg-gray-900" >
                     <a href="{{ url('entry') }}" wire:navigate>Entry Form</a>
                 </button>
 

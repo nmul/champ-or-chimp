@@ -18,9 +18,10 @@ class SuccessPage extends Component
     public function render()
     {
         $latestOrder = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        // can also check here to make sure that Order number isn't already in the database
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('livewire.success-page', 
                     [ 
+                    "orders" => $orders,
                     "latestOrder" => $latestOrder, 
                     "firstName" => Auth::user()->first_name])
                     ->layout('layouts.app');

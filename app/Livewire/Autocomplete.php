@@ -12,12 +12,20 @@ use Illuminate\Support\Facades\DB;
 
 class Autocomplete extends Component
 {
-    public $query, $table, $nameCol, $eventId, $fieldName, $results = array(), $entryForm, $doublePoints, $golf;
+    public $query, $table, $nameCol, $eventId, $fieldName, $results = array(), $entryForm, $doublePoints, $golf, $fieldToFocus;
 
     #[Reactive]
     public $golfAnswers;
     #[Reactive]
     public $doublePointsAnswers;
+
+    public $focusThisField = false;
+
+    public function mount(){
+        if ($this-> fieldToFocus == $this-> fieldName){
+            $this-> focusThisField = true;
+        }
+    }
 
     #[On('validateAutoComplete')]
     public function checkField(){

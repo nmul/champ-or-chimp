@@ -3,6 +3,8 @@
             <form wire:submit="addToCart" id="entryForm" name="entryForm" method="POST" wire:loading.class="opacity-50">
                 @csrf
                 
+                <input type="hidden" wire:model.live="fieldToFocus">
+
                 @if($currentPage == 0)
                 <div id="landing-page" class="max-w-md mx-auto">
                     <h1 class="text-5xl font-extrabold mx-auto custom-orange-text text-center" id="first-ef-heading">Champ Or Chimp</h1>
@@ -30,9 +32,7 @@
                             </div>
                         </div>
                     </div>
-
                     
-
 
                     <div id="quick-pick-info-container" class="custom-alert-box" role="alert">
                         <img id="winner-chimp" src="{{ URL('/images/winner-chimp.jpg') }}" >
@@ -98,7 +98,7 @@
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('hurling_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'hurling', 'nameCol' => 'name', 'eventId' => 14, 'fieldName' => 'hurling_answer'])
+                            @livewire('autocomplete', ['table' => 'hurling', 'nameCol' => 'name', 'eventId' => 14, 'fieldName' => 'hurling_answer', 'focus' => false, 'fieldToFocus' => $fieldToFocus])
                         @endif
                         <br>
                     </div>
@@ -114,7 +114,7 @@
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gaelic_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'gaelic', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gaelic_answer'])
+                            @livewire('autocomplete', ['table' => 'gaelic', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gaelic_answer', 'fieldToFocus' => $fieldToFocus])
                         @endif
                         <br>
                     </div>
@@ -130,7 +130,7 @@
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('ladies_gaelic_answer')">Edit</button>
                             </div>
                         @else
-                            @livewire('autocomplete', ['table' => 'ladiesgaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer'])
+                            @livewire('autocomplete', ['table' => 'ladiesgaelic', 'nameCol' => 'name', 'eventId' => 16, 'fieldName' => 'ladies_gaelic_answer', 'fieldToFocus' => $fieldToFocus])
                         @endif
                         <br>
                     </div>
@@ -148,7 +148,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('camogie_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'camogie', 'nameCol' => 'name', 'eventId' => 17, 'fieldName' => 'camogie_answer'])
+                                @livewire('autocomplete', ['table' => 'camogie', 'nameCol' => 'name', 'eventId' => 17, 'fieldName' => 'camogie_answer', 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -188,7 +188,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champion_hurdle_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'championhurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer'])
+                                @livewire('autocomplete', ['table' => 'championhurdle', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champion_hurdle_answer', 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -203,7 +203,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('gold_cup_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'goldcup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer'])
+                                @livewire('autocomplete', ['table' => 'goldcup', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'gold_cup_answer', 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -222,7 +222,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_cup_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'championscup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer'])
+                                @livewire('autocomplete', ['table' => 'championscup', 'nameCol' => 'name', 'eventId' => 4, 'fieldName' => 'champions_cup_answer', 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -238,7 +238,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('champions_league_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'championsleague', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer'])
+                                @livewire('autocomplete', ['table' => 'championsleague', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'champions_league_answer', 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -258,7 +258,7 @@
                                         <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_ladies_answer')">Edit</button>
                                     </div>
                                 @else
-                                    @livewire('autocomplete', ['table' => 'tennisladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer'])
+                                    @livewire('autocomplete', ['table' => 'tennisladies', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_ladies_answer', 'fieldToFocus' => $fieldToFocus])
                                 @endif
                                 <br>
                             </div>
@@ -274,7 +274,7 @@
                                         <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('wimbledon_mens_answer')">Edit</button>
                                     </div>
                                 @else
-                                    @livewire('autocomplete', ['table' => 'tennismen', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer'])
+                                    @livewire('autocomplete', ['table' => 'tennismen', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'wimbledon_mens_answer', 'fieldToFocus' => $fieldToFocus])
                                 @endif
                                 <br>
                             </div>
@@ -319,7 +319,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_1_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer', 'golf' => true, 'golfAnswers' => $golfAnswers])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_1_answer', 'golf' => true, 'golfAnswers' => $golfAnswers, 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -334,7 +334,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_2_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer', 'golf' => true, 'golfAnswers' => $golfAnswers])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_2_answer', 'golf' => true, 'golfAnswers' => $golfAnswers, 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -349,7 +349,7 @@
                                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md" type="button" wire:click="setFieldAsNull('golf_3_answer')">Edit</button>
                                 </div>
                             @else
-                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer', 'golf' => true , 'golfAnswers' => $golfAnswers])
+                                @livewire('autocomplete', ['table' => 'golf', 'nameCol' => 'name', 'eventId' => 15, 'fieldName' => 'golf_3_answer', 'golf' => true , 'golfAnswers' => $golfAnswers, 'fieldToFocus' => $fieldToFocus])
                             @endif
                             <br>
                         </div>
@@ -405,6 +405,9 @@
                                 </div>
                             <br>
                         </div>
+
+                        
+
                         <div class="flex flex-col items-center pb-10">
                             <!-- Help text -->
                             <span class="text-sm text-gray-700">
@@ -427,9 +430,9 @@
     <hr>
 
     @script
-    <script>
-
+    <script>     
         $(document).ready(function () {
+            
             if ($('#enteringForSomeone').is(":checked")){
                 $('#other-entry-div').show();
             } else {

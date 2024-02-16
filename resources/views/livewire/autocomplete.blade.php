@@ -1,5 +1,5 @@
 <div class="w-80">
-    <input wire:model.live="query" id="{{ $this->table }}" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 autocomplete-field" placeholder="Select your winner!" />
+    <input wire:model.live="query" id="{{ $this->fieldName }}" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 autocomplete-field" placeholder="Select your winner!" />
     @error('query')
         <span class="text-md text-red-500">Click an option in the list!</span>
     @enderror
@@ -15,3 +15,12 @@
         </div>
     @endif
 </div>
+
+@script
+<script>
+    if ($wire.focusThisField){
+        let el = document.getElementById($wire.fieldName);
+        el.focus();
+    }
+</script>
+@endscript

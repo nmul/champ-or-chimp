@@ -69,7 +69,8 @@ class EntryForm extends Component
     public $golfAnswers = [];
     public $doublePointsAnswers = [];
     public $is_quick_pick = false;
-    
+
+    public $fieldToFocus = '';
 
     public function mount($id = null){
         $token = Session::get('cart_token');
@@ -122,6 +123,7 @@ class EntryForm extends Component
         $eventId = $answerEvent['eventId'];
         $fieldName = $answerEvent['fieldName'];
         $this->$fieldName = $answerId;
+        $this->fieldToFocus = '';
     }
 
     #[On('golfersUpdated')]
@@ -146,6 +148,8 @@ class EntryForm extends Component
 
     public function setFieldAsNull(string $fieldName){
         $this->$fieldName = null;
+        $this->dispatch('field_set_as_null', fieldName: $fieldName);
+        $this->fieldToFocus = $fieldName;
     }
 
     public function addToCart(Request $request){

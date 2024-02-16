@@ -46,24 +46,27 @@ new #[Layout('layouts.guest')] class extends Component
                 {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
             </div>
             <!-- Session Status -->
+
             <x-auth-session-status class="mb-4" :status="session('status')" />
-            <form wire:submit="login">
-                <!-- Email Address -->
-                <div>
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input wire:model="email" id="email" class="block mt-1 w-60 md:w-80" type="email" name="email" required autofocus autocomplete="username" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div>
+            <div class="flex justify-center">
+                <form wire:submit="sendPasswordResetLink">
+                    <!-- Email Address -->
+                    <div>
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input wire:model="email" id="email" class="block mt-1 w-60 md:w-80" type="email" name="email" required autofocus autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
 
-                <div class="flex items-center justify-center mt-4 mb-10">
+                    <div class="flex items-center justify-center mt-4 mb-10">
 
-                    <a class="underline text-sm text-gray-600 0 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-5" href="{{ URL('/register') }}">Cancel</a>
-                    <x-primary-button>
-                        {{ __('Email Password Reset Link') }}
-                    </x-primary-button>
-                    
-                </div>
-            </form>
+                        <a class="underline text-sm text-gray-600 0 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-5" href="{{ URL('/register') }}">Cancel</a>
+                        <x-primary-button>
+                            {{ __('Email Password Reset Link') }}
+                        </x-primary-button>
+                        
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

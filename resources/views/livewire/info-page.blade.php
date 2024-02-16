@@ -1,15 +1,4 @@
-<div class="p-5 custom-bg-color mt-2 container mx-auto" x-data="
-{
-openFaq1: false, 
-openFaq2: false, 
-openFaq3: false, 
-openFaq4: false, 
-openFaq5: false, 
-openFaq6: false,
-openFaq7: false,
-openFaq8: false,
-}
-">
+<div class="p-5 custom-bg-color mt-2 container mx-auto">
     
     <div id="main-info-wrapper" class="min-h-full">
         <h1 class="text-3xl font-bold text-center custom-red-text underline mb-3">Welcome to Champ or Chimp</h1> 
@@ -20,18 +9,32 @@ openFaq8: false,
         </div>
 
         <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction game out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
+    </div>
+
+    <div class="p-5 custom-bg-color mt-2 container mx-auto" x-data="
+    {
+    openFaq1: false, 
+    openFaq2: false, 
+    openFaq3: false, 
+    openFaq4: false, 
+    openFaq5: false, 
+    openFaq6: false,
+    openFaq7: false,
+    openFaq8: false,
+    }
+    ">
 
         <div class="flex flex-wrap -mx-4">
-            <div class="lg:w-1/2 px-4 w-full">
+            <div class="lg:w-1/2 px-4 w-full" id="leftHalfOfInfo">
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq1 = !openFaq1"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq1 && 'rotate-180'"
@@ -57,7 +60,7 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq1" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         Champ or Chimp is the ultimate Sports Prediction Competition, now in it's 11<sup>th</sup> year. 
                         The competition comprises of 14 Sporting Events, the challenge for you is to predict the winner of each of these events.
@@ -66,14 +69,14 @@ openFaq8: false,
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq2 = !openFaq2"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq2 && 'rotate-180'"
@@ -99,7 +102,7 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq2" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         The Competition begins with the Cheltenham Champion Hurdle in March and runs until the Camogie Final in September.
                         <br><br>
@@ -108,14 +111,14 @@ openFaq8: false,
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq3 = !openFaq3"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq3 && 'rotate-180'"
@@ -141,7 +144,7 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq3" class="faq-content pl-[62px]">
                     <p
-                        class="text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="text-base leading-relaxed text-body-color"
                         >
                         <ul style="list-style: circle;">
                             <li><span class="mr-1">1st:</span> Return Flights Shannon - Las Vegas + $1,000.00</li>
@@ -156,14 +159,14 @@ openFaq8: false,
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq7 = !openFaq7"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq7 && 'rotate-180'"
@@ -189,23 +192,23 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq7" class="faq-content pl-[62px]">
                     <p
-                        class="text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="text-base leading-relaxed text-body-color"
                         >
                         You nominate 4 events as your Double Points selection. Any points you receive for these 4 events will be doubled. If you don't fill in this portion of the entry form, you will be assigned events.
                     </p>
                 </div>
                 </div>
             </div>
-            <div class="lg:w-1/2 px-4 w-full">
+            <div class="lg:w-1/2 px-4 w-full" id="rightHalfOfInfo">
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq4 = !openFaq4"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq4 && 'rotate-180'"
@@ -231,21 +234,21 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq4" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         Events are grouped into catagories for the purpose of awarding points. There are 3 Catagories ("A", "B", "C") based on the format of the event and the degree of difficulty in predicting the winner. See below for details.
                     </p>
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq5 = !openFaq5"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq5 && 'rotate-180'"
@@ -271,21 +274,21 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq5" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries for whichever competitions you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate an entry for you for that competition.
                     </p>
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq6 = !openFaq6"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq6 && 'rotate-180'"
@@ -311,21 +314,21 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq6" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         You can select Quick Pick for as many or as few of the competitions as you want. If you select quick pick, our algorithm will generate a random entry from the list of favourites for that competition. If you select the Quick Pick checkbox on the first section of the entry form blank the entire form will be completed for you in this manner. 
                     </p>
                 </div>
                 </div>
                 <div
-                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8"
+                class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
                     class="flex w-full text-left faq-btn"
                     @click="openFaq8 = !openFaq8"
                     >
                     <div
-                        class="bg-primary/5 dark:bg-white/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
+                        class="bg-primary/5 text-primary mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg"
                         >
                         <svg
                             :class="openFaq8 && 'rotate-180'"
@@ -351,7 +354,7 @@ openFaq8: false,
                 </button>
                 <div x-show="openFaq8" class="faq-content pl-[62px]">
                     <p
-                        class="py-3 text-base leading-relaxed text-body-color dark:text-black-6"
+                        class="py-3 text-base leading-relaxed text-body-color"
                         >
                         Entries cost €10.00 each, or you can avail of our <strong>Buy 2 Get 1 Free Offer</strong>, of 3 entries for €20.00.
                     </p>
@@ -360,7 +363,6 @@ openFaq8: false,
             </div>
         </div>
     </div>
-    
     <section id="Scoring">
         <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Events in 2024 Competition</h1>
         <p class="p-3 text-xl">Below are the events which are in the 2024 Champ or Chimp Competition</p>

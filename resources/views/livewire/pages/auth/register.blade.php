@@ -41,7 +41,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div id="" class="low-opacity-bg-image pb-10" style="background-image: url({{ URL('/images/lasVegasLessSky1200.jpg')}}); font-family: 'Inter', sans-serif;">
+    <div id="" class="p-5 custom-bg-color mt-2 container mx-auto" style="font-family: 'Inter', sans-serif;">
         
 
         <div class="container pt-3 mx-auto h-full grid grid-cols-1">

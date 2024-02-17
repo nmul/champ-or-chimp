@@ -1,5 +1,5 @@
 <div>
-    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div id="deal-banner" class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
         <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
           <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#CB3057] to-[#F48142] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
         </div>
@@ -13,7 +13,7 @@
           <a href="{{ url('entry') }}" wire:navigate class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Go To Entry Form<span aria-hidden="true">&rarr;</span></a>
         </div>
         <div class="flex flex-1 justify-end">
-          <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+          <button type="button" id="close-deal-banner" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
             <span class="sr-only">Dismiss</span>
             <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -24,7 +24,9 @@
 
     @if($cart)
         <div x-data="{ showDeleteModal: false, deletingEntry: null }" class="custom-bg-color container mt-3 rounded-lg shadow mx-auto h-full flex justify-center">
-            <div class="max-w-md mx-auto custom-bg-color">
+			<form action="POST" wire:submit="checkout" wire:loading.class="opacity-50">
+            	<div class="max-w-md mx-auto custom-bg-color">
+				
                 <div id="order-container">
                     
                     <h1 class="text-5xl font-extrabold mx-auto custom-orange-text text-center">Order details</h1>
@@ -42,7 +44,7 @@
                     @endforeach
                     
                 </div>
-                <form action="POST" wire:submit="checkout">
+                
                     @csrf
                     <div class="col-span-2 flex justify-center mt-2 mb-5">
                         <button type="submit" class="mx-3 px-4 h-10 text-base font-medium text-white bg-blue-800 rounded-s hover:bg-gray-900">
@@ -50,8 +52,8 @@
                         </button>
                         <button type="button" class="mx-3 px-4 h-10 text-base font-medium text-white bg-green-800 rounded-s hover:bg-gray-900"><a href="{{ url('entry') }}" wire:navigate>Add Another Entry</a></button>
                     </div>
-               </form>
-            </div>
+				</div>
+			</form>
             <div x-show="showDeleteModal" x-on:close-modal.window="showDeleteModal = false" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
                 <div class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-white w-80 shadow-lg rounded-lg p-8">
                   <h3 class="text-lg font-medium text-gray-900">Confirm Deletion</h3>
@@ -103,3 +105,15 @@
       </div>
     @endif
 </div>
+
+@script
+<script>
+
+	$(document).on('click', '#close-deal-banner', function() {
+		$('#deal-banner').hide();
+	});
+
+  </script>
+
+
+@endscript

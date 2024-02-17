@@ -7,15 +7,13 @@ use App\Models\Golf;
 use App\Models\MissingField;
 use App\Models\Prediction;
 use App\Models\QuickPick;
-use App\Models\User;
-use App\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class addEntryToDatabase implements ShouldQueue
 {
@@ -66,9 +64,16 @@ class addEntryToDatabase implements ShouldQueue
         // assign golfers 1,2,3 and Double points 1,2,3,4
         $e -> user_id = $userId;
         $selectedGolfers = array();
-        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_1_answer']);
-        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_2_answer']);
-        $this->addToArrayIfPresent($selectedGolfers, $cartItem['golf_3_answer']);
+        if (isset($cartItem['golf_1_answer']) && !empty($cartItem['golf_1_answer'])) {
+            array_push($selectedGolfers, $cartItem['golf_1_answer']);
+        } 
+        if (isset($cartItem['golf_2_answer']) && !empty($cartItem['golf_2_answer'])) {
+            array_push($selectedGolfers, $cartItem['golf_2_answer']);
+        }   
+        if (isset($cartItem['golf_3_answer']) && !empty($cartItem['golf_3_answer'])) {
+            array_push($selectedGolfers, $cartItem['golf_3_answer']);
+        }
+
         $returned_golfers = $this->findGolfers($selectedGolfers);
         $e -> golf_1_id = $returned_golfers[0];
         $e -> golf_2_id = $returned_golfers[1];
@@ -76,10 +81,19 @@ class addEntryToDatabase implements ShouldQueue
 
         // handle double points events
         $events_array = array();
-        $this->addToArrayIfPresent($events_array, $cartItem['double_points_1_answer']);
-        $this->addToArrayIfPresent($events_array, $cartItem['double_points_2_answer']);
-        $this->addToArrayIfPresent($events_array, $cartItem['double_points_3_answer']);
-        $this->addToArrayIfPresent($events_array, $cartItem['double_points_4_answer']);
+        if (isset($cartItem['double_points_1_answer']) && !empty($cartItem['double_points_1_answer'])) {
+            array_push($events_array, $cartItem['double_points_1_answer']);
+        }
+
+        if (isset($cartItem['double_points_2_answer']) && !empty($cartItem['double_points_2_answer'])) {
+            array_push($events_array, $cartItem['double_points_2_answer']);
+        }
+        if (isset($cartItem['double_points_3_answer']) && !empty($cartItem['double_points_3_answer'])) {
+            array_push($events_array, $cartItem['double_points_3_answer']);
+        }
+        if (isset($cartItem['double_points_4_answer']) && !empty($cartItem['double_points_4_answer'])) {
+            array_push($events_array, $cartItem['double_points_4_answer']);
+        }
         $new_events_array = $this->generateEventsIfNotSelected($events_array);
         $e -> double_points_1_id = $new_events_array[0];
         $e -> double_points_2_id = $new_events_array[1];
@@ -233,7 +247,7 @@ class addEntryToDatabase implements ShouldQueue
         }
     }
 
-    function findGolfers(array $selectedGolfers){
+    function findGolfers(array $selectedGolfers){    
         if( count($selectedGolfers) == 2 ) {
             $top_10 = true;
         } else {
@@ -286,13 +300,13 @@ class addEntryToDatabase implements ShouldQueue
         }
     }
 
-    public function generateEventsIfNotSelected(array $events){
+    public function generateEventsIfNotSelected(array $events){      
         $competition_id = 12;
         $event_ids = DB::table('events_in_competition')
                      ->where('competition_id', $competition_id)
                      ->pluck('event_id')
                      ->toArray();
-        while (count($events) <= 4){
+        while (count($events) < 4){
             $random_key = array_rand($event_ids);
             // Access the element at the random key
             $random_event = $event_ids[$random_key];

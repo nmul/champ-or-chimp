@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use App\Jobs\addEntryToDatabase;
 use App\Models\Competition;
 use App\Models\Entry;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -162,8 +164,6 @@ class EntryForm extends Component
     }
 
     public function addToCart(Request $request){
-        
-        $validated = $this->validate();
 
         $user = Auth::user();
         $formFirst = $this->firstName == '' ? $user->first_name : $this->firstName;
@@ -284,11 +284,6 @@ class EntryForm extends Component
 
     public function autocompleteNotEmpty(){
         $this->dispatch('validateAutoComplete');
-    }
-
-    public function assignArrayItemsToFields()
-    {
-        
     }
 
     public function render()

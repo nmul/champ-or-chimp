@@ -2,27 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\PaymentReceived;
-
 use App\Jobs\OrderConfirmationEmailJob;
-use App\Mail\OrderConfirmationMail;
-use App\Mail\TestMail;
 use App\Models\Cart;
 use App\Models\Order;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Models\Entry;
-use App\Models\MissingField;
-use App\Models\Prediction;
 use App\Jobs\addEntryToDatabase;
-use App\Jobs\AddOrderToDatabaseJob;
+
 
 class StripeController extends BaseController
 {

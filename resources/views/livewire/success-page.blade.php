@@ -29,6 +29,16 @@
             </div>
         </div>
     @else
-        
+        <div class="custom-bg-color container mt-3 rounded-lg shadow mx-auto h-full pt-5 pb-10">
+            <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Sorry, {{ $firstName }}.</h1>
+            <div class="container max-w-lg mx-auto">
+                <div id="order-container">
+
+                    <div class="mx-5 my-3">
+                        Your order has not been placed. Please contact info@champorchimp.ie.
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 </div>

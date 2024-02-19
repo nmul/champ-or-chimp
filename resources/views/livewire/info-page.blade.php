@@ -170,7 +170,7 @@
                     </p>
                 </div>
                 </div>
-                <div
+                <
                 class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
                 <button
@@ -209,7 +209,7 @@
                         You nominate 4 events as your Double Points selection. Any points you receive for these 4 events will be doubled. If you don't fill in this portion of the entry form, you will be assigned events.
                     </p>
                 </div>
-                </div>
+
             </div>
             <div class="w-full px-4 lg:w-1/2" id="rightHalfOfInfo">
                 <div

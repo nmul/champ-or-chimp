@@ -8,7 +8,7 @@
             <button class="mx-2 px-3 py-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white"><a href="{{ URL('entry') }}">Enter Now</a></button>
         </div>
 
-        <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction game out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
+        <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sports prediction competition out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
     </div>
 
     <div class="p-5 custom-bg-color mt-2 container mx-auto" x-data="
@@ -63,8 +63,9 @@
                         class="py-3 text-base leading-relaxed text-body-color"
                         >
                         Champ or Chimp is the ultimate Sports Prediction Competition, now in it's 11<sup>th</sup> year. 
-                        The competition comprises of 14 Sporting Events, the challenge for you is to predict the winner of each of these events.
-                        Proceeds from the competition benefit many sporting bodies and charities in the Mid-West Region.
+                        The competition comprises of 14 Sporting Events, the challenge for you is to predict the winner of each of these events. 
+                        You will receive regular updates by email on your progress in each of these events.
+                        <p><strong>All proceeds from the competition benefit many sporting bodies and charities in the Mid-West Region.</strong></p>
                     </p>
                 </div>
                 </div>
@@ -156,6 +157,18 @@
                             <li><span class="mr-1">7th:</span> 2 Return Flights Shannon - Naples</li>
                         </ul>
                     </p>
+                    <br>
+
+                    <h2 class="font-bold">Bonus Prizes</h2>
+                    <p class="text-base leading-relaxed text-body-color">
+                        <ul style="list-style: circle;">
+                            <li><span class="mr-1">US Masters:</span> 2 Return Flights Shannon - Corfu</li>
+                            <li><span class="mr-1">Champions Cup:</span> 2 Return Flights Shannon - Beziers</li>
+                            <li><span class="mr-1">Brittish Open:</span> 2 Return Flights Shannon - Porto</li>
+                            <li><span class="mr-1">Hurling:</span> 2 Return Flights Shannon - Paris</li>
+                        </ul>
+                    </p>
+                    <h2 class="mt-2 font-bold">All Entrants will be included in a draw for a €250 FlyShannon.ie voucher.</h2>
                 </div>
                 </div>
                 <div
@@ -276,7 +289,7 @@
                     <p
                         class="py-3 text-base leading-relaxed text-body-color"
                         >
-                        Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries for whichever competitions you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate an entry for you for that competition.
+                        Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries for whichever event you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate a selection for you for that event.
                     </p>
                 </div>
                 </div>

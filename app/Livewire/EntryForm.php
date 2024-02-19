@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Jobs\addEntryToDatabase;
 use App\Models\Competition;
 use App\Models\Entry;
 use App\Models\Cart;

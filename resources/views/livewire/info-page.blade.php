@@ -1,23 +1,23 @@
-<div class="container p-5 mx-auto mt-2 custom-bg-color">
-
+<div class="p-5 custom-bg-color mt-2 container mx-auto">
+    
     <div id="main-info-wrapper" class="min-h-full">
-        <h1 class="mb-3 text-3xl font-bold text-center underline custom-red-text">Welcome to Champ or Chimp</h1>
+        <h1 class="text-3xl font-bold text-center custom-red-text underline mb-3">Welcome to Champ or Chimp</h1> 
 
-        <p class="p-3 text-2xl text-center custom-orange-text">Know it all already? Go straight to entry form!</p>
+        <p class="p-3 custom-orange-text text-2xl text-center">Know it all already? Go straight to entry form!</p>
         <div class="flex justify-center">
-            <button class="h-10 px-3 py-2 mx-2 text-base font-medium text-white border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color"><a href="{{ URL('entry') }}">Enter Now</a></button>
+            <button class="mx-2 px-3 py-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white custom-bg-red-color text-white"><a href="{{ URL('entry') }}">Enter Now</a></button>
         </div>
 
-        <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction competition out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
+        <p class="p-3 text-xl">Read below to learn how to take part in the most exciting sport prediction game out there, and be in with a chance to win amazing prizes courtesy of FlyShannon!</p>
     </div>
 
-    <div class="container p-5 mx-auto mt-2 custom-bg-color" x-data="
+    <div class="p-5 custom-bg-color mt-2 container mx-auto" x-data="
     {
-    openFaq1: false,
-    openFaq2: false,
-    openFaq3: false,
-    openFaq4: false,
-    openFaq5: false,
+    openFaq1: false, 
+    openFaq2: false, 
+    openFaq3: false, 
+    openFaq4: false, 
+    openFaq5: false, 
     openFaq6: false,
     openFaq7: false,
     openFaq8: false,
@@ -25,7 +25,7 @@
     ">
 
         <div class="flex flex-wrap -mx-4">
-            <div class="w-full px-4 lg:w-1/2" id="leftHalfOfInfo">
+            <div class="lg:w-1/2 px-4 w-full" id="leftHalfOfInfo">
                 <div
                 class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
@@ -62,9 +62,9 @@
                     <p
                         class="py-3 text-base leading-relaxed text-body-color"
                         >
-                        Champ or Chimp is the ultimate Sports Prediction Competition, now in it's 11<sup>th</sup> year.
-                        The competition comprises of 14 Sporting Events, the challenge for you is to predict the winner of each of these events. You will receive regular updates by email on how you are doing after each event.</br>
-                       <p><strong>>Proceeds from the competition benefit many sporting bodies and charities in the Mid-West Region.</strong</p>
+                        Champ or Chimp is the ultimate Sports Prediction Competition, now in it's 11<sup>th</sup> year. 
+                        The competition comprises of 14 Sporting Events, the challenge for you is to predict the winner of each of these events.
+                        Proceeds from the competition benefit many sporting bodies and charities in the Mid-West Region.
                     </p>
                 </div>
                 </div>
@@ -147,7 +147,7 @@
                         class="text-base leading-relaxed text-body-color"
                         >
                         <ul style="list-style: circle;">
-                            <li><span class="mr-1">1st:</span> 2 Return Flights Shannon - Las Vegas + $1,000.00</li>
+                            <li><span class="mr-1">1st:</span> Return Flights Shannon - Las Vegas + $1,000.00</li>
                             <li><span class="mr-1">2nd:</span> 2 Return Flights Shannon - Chicago</li>
                             <li><span class="mr-1">3rd:</span> €500.00 Fly Shannon Voucher</li>
                             <li><span class="mr-1">4th:</span> 2 Return Flights Shannon - Lanzarote</li>
@@ -155,18 +155,6 @@
                             <li><span class="mr-1">6th:</span> 2 Return Flights Shannon - Faro</li>
                             <li><span class="mr-1">7th:</span> 2 Return Flights Shannon - Naples</li>
                         </ul>
-                        <p class="text-base leading-relaxed text-body-color dark:text-black-6">
-                        </br>
-                            <h3>Additional Prizes</h3>
-                            <ul style="list-style: circle;">
-                                <li><span class="mr-1">US Masters</span>: 2 Return Flights Shannon - Corfu</li>
-                                <li><span class="mr-1">Champions Cup</span>: 2 Return Flights Shannon - Beziers</li>
-                                <li><span class="mr-1">British Open</span>: 2 Return Flights Shannon - Porto</li>
-                                <li><span class="mr-1">Hurling</span>: 2 Return Flights Shannon - Paris</li>
-                            </ul>
-                            </br>
-                            <h2>All entrants will be included im a draw for a €250.00 FlyShannon.ie Voucher.</h2>
-                        </p>
                     </p>
                 </div>
                 </div>
@@ -211,7 +199,7 @@
                 </div>
                 </div>
             </div>
-            <div class="w-full px-4 lg:w-1/2" id="rightHalfOfInfo">
+            <div class="lg:w-1/2 px-4 w-full" id="rightHalfOfInfo">
                 <div
                 class="w-full p-4 mb-8 bg-white rounded-lg shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8"
                 >
@@ -288,7 +276,7 @@
                     <p
                         class="py-3 text-base leading-relaxed text-body-color"
                         >
-                        Navigate to the <a class="italic text-blue-500 underline" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing the name of your predicted winner for the relevant event, as you type the system will generate a pick list from which you can make your selection. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate a selection for you for that event.
+                        Navigate to the <a class="underline text-blue-500 italic" href="{{ URL('entry')}}">entry form</a> page. Input your contact information, or input information on behalf of somebody else you wish to enter for. You can also select <em>Quick Pick</em> at this point(see below). Next begin typing your entries for whichever competitions you wish to predict. If you leave a field blank, our <em>Quick Pick Algorithm</em> will generate an entry for you for that competition.
                     </p>
                 </div>
                 </div>
@@ -328,7 +316,7 @@
                     <p
                         class="py-3 text-base leading-relaxed text-body-color"
                         >
-                        You can select Quick Pick for as many or as few of the competitions as you want. If you select quick pick, our algorithm will generate a random entry from the list of favourites for that competition. If you select the Quick Pick checkbox on the first section of the entry form blank the entire form will be completed for you in this manner.
+                        You can select Quick Pick for as many or as few of the competitions as you want. If you select quick pick, our algorithm will generate a random entry from the list of favourites for that competition. If you select the Quick Pick checkbox on the first section of the entry form blank the entire form will be completed for you in this manner. 
                     </p>
                 </div>
                 </div>
@@ -376,16 +364,16 @@
         </div>
     </div>
     <section id="Scoring">
-        <h1 class="p-3 text-3xl font-bold text-center custom-red-text">Events in 2024 Competition</h1>
+        <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Events in 2024 Competition</h1>
         <p class="p-3 text-xl">Below are the events which are in the 2024 Champ or Chimp Competition</p>
-        <div class="grid grid-cols-1 mx-auto my-5 shadow-md lg:grid-cols-3">
-            <div class="p-10 mx-3 bg-white rounded-lg shadow-lg">
-                <h2 class="mb-2 text-2xl font-bold custom-red-text">Cateogry A</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 shadow-md mx-auto my-5">
+            <div class="bg-white p-10 rounded-lg shadow-lg mx-3">
+                <h2 class="text-2xl font-bold mb-2 custom-red-text">Cateogry A</h2>
                 <p class="text-gray-700">Cheltenham Champion Hurdle</p>
                 <p class="text-gray-700">Cheltenham Gold Cup</p>
             </div>
-            <div class="p-10 mx-3 bg-white rounded-lg shadow-lg">
-                <h2 class="mb-2 text-2xl font-bold custom-red-text">Cateogry B</h2>
+            <div class="bg-white p-10 rounded-lg shadow-lg mx-3">
+                <h2 class="text-2xl font-bold mb-2 custom-red-text">Cateogry B</h2>
                 <p class="text-gray-700">Champions Cup Rugby</p>
                 <p class="text-gray-700">Champions League Football</p>
                 <p class="text-gray-700">Wimbledon Ladies Tennis</p>
@@ -395,8 +383,8 @@
                 <p class="text-gray-700">All-Ireland Senior Ladies Gaelic Football</p>
                 <p class="text-gray-700">All-Ireland Senior Camogie</p>
             </div>
-            <div class="p-10 mx-3 bg-white rounded-lg shadow-lg">
-                <h2 class="mb-2 text-2xl font-bold custom-red-text">Cateogry C</h2>
+            <div class="bg-white rounded-lg shadow-lg mx-3 p-10">
+                <h2 class="text-2xl font-bold mb-2 custom-red-text">Cateogry C</h2>
                 <p class="text-gray-700">US Masters</p>
                 <p class="text-gray-700">US PGA</p>
                 <p class="text-gray-700">US Open Golf</p>
@@ -404,12 +392,12 @@
             </div>
         </div>
         <div>
-            <h1 class="p-3 text-3xl font-bold text-center custom-red-text">Scoring Scheme</h1>
+            <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Scoring Scheme</h1>
             <p class="p-3 text-xl">Events are grouped into catagories for the purpose of awarding points. There are 3 Catagories ("A", "B", "C") based on the format of the event and the degree of difficulty in predicting the winner. See below for details.</p>
         </div>
-        <div class="relative max-w-lg mx-auto overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 rtl:text-right ">
-                <thead class="text-gray-800 uppercase text-s bg-gray-50">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-w-lg mx-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                <thead class="text-s text-gray-800 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Category
@@ -426,7 +414,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b odd:bg-white even:bg-gray-50">
+                    <tr class="odd:bg-white  even:bg-gray-50 border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             Winner
                         </th>
@@ -440,7 +428,7 @@
                             100
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50">
+                    <tr class="odd:bg-white even:bg-gray-50 border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             Runner Up
                         </th>
@@ -454,7 +442,7 @@
                             70
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             Beaten S/F
                         </th>
@@ -468,7 +456,7 @@
                             N/A
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             3rd Place
                         </th>
@@ -482,7 +470,7 @@
                             60
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             4th Place
                         </th>
@@ -496,7 +484,7 @@
                             50
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             5th Place
                         </th>
@@ -510,7 +498,7 @@
                             40
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             6th Place
                         </th>
@@ -524,7 +512,7 @@
                             30
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             7th Place
                         </th>
@@ -538,7 +526,7 @@
                             20
                         </td>
                     </tr>
-                    <tr class="border-b odd:bg-white even:bg-gray-50 ">
+                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             8th Place
                         </th>
@@ -560,17 +548,17 @@
     <section id="HeroButton">
         <div class="flex flex-col items-center pb-10">
             <!-- Help text -->
-            <h1 class="p-3 text-3xl font-bold text-center custom-red-text">Think you're ready?</h1>
+            <h1 class="p-3 custom-red-text text-3xl font-bold text-center">Think you're ready?</h1>
 
             @if (auth()->guest())
                 <p class="p-3 text-xl">Login or create an account to submit an entry form!</p>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0">
-                    <button type="button" class="h-10 px-2 mx-2 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
+                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
                         <a href="{{ URL('register') }}">Register</a>
                     </button>
-
-                    <button type="button" class="h-10 px-2 mx-2 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
+                    
+                    <button type="button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white">
                         <a href="{{ URL('login') }}">Login</a>
                     </button>
                 </div>
@@ -578,14 +566,14 @@
                 <p class="p-3 text-xl">Hi {{Auth::user()->first_name}}, submit a form here!</p>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0">
-                    <button type="button" id="custom-red-button" class="h-10 px-2 mx-2 text-base font-medium text-white border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white ">
+                    <button type="button" id="custom-red-button" class="mx-2 px-2 h-10 text-base font-medium border border-gray-700 rounded-e hover:bg-gray-900 hover:text-white text-white ">
                         <a href="{{ URL('entry') }}">Entry Form</a>
                     </button>
                 </div>
             @endif
 
 
-
+            
         </div>
     </section>
 </div>

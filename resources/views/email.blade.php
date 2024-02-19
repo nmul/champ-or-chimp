@@ -8,7 +8,7 @@
         <p>Number Of Entries: {{ $order-> number_of_forms }}</p>
         <p>Best of luck in Champ or Chimp 2024!</p>
 
-        <p>If you have any queries regarding your entry, please email us at info@champorchimp.com</p>
+        <p>If you have any queries regarding your entry, please email us at champorchimp@shannonrfc.com</p>
 
         <p>Kind regards,</p>
         <p>Champ or Chimp Team</p>
